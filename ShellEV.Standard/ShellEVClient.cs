@@ -196,6 +196,36 @@ namespace ShellEV.Standard
             /// <summary>
             /// Sets credentials for ClientCredentialsAuth.
             /// </summary>
+            /// <param name="oAuthClientId">OAuthClientId.</param>
+            /// <param name="oAuthClientSecret">OAuthClientSecret.</param>
+            /// <returns>Builder.</returns>
+            [Obsolete("This method is deprecated. Use ClientCredentialsAuth(clientCredentialsAuthModel) instead.")]
+            public Builder ClientCredentialsAuth(string oAuthClientId, string oAuthClientSecret)
+            {
+                clientCredentialsAuthModel = clientCredentialsAuthModel.ToBuilder()
+                    .OAuthClientId(oAuthClientId)
+                    .OAuthClientSecret(oAuthClientSecret)
+                    .Build();
+                return this;
+            }
+
+            /// <summary>
+            /// Sets OAuthToken.
+            /// </summary>
+            /// <param name="oAuthToken">OAuthToken.</param>
+            /// <returns>Builder.</returns>
+            [Obsolete("This method is deprecated. Use ClientCredentialsAuth(clientCredentialsAuthModel) instead.")]
+            public Builder OAuthToken(Models.OAuthToken oAuthToken)
+            {
+                clientCredentialsAuthModel = clientCredentialsAuthModel.ToBuilder()
+                    .OAuthToken(oAuthToken)
+                    .Build();
+                return this;
+            }
+
+            /// <summary>
+            /// Sets credentials for ClientCredentialsAuth.
+            /// </summary>
             /// <param name="clientCredentialsAuthModel">ClientCredentialsAuthModel.</param>
             /// <returns>Builder.</returns>
             public Builder ClientCredentialsAuth(ClientCredentialsAuthModel clientCredentialsAuthModel)

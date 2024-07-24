@@ -9,13 +9,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>sdksio.EvRechargeSDK</AssemblyName>
-    <Version>1.1.0.0</Version>
+    <Version>1.2.0.0</Version>
     <Authors>developer sdksio</Authors>
     <Owners>Shell Technical Support (API)</Owners>
     <Product>ShellEV.Standard</Product>
     <Copyright>Copyright ©  2019</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <Description>This API Product provides the option to manage charging at all public Shell Recharge locations. The end points provides control to start, stop and get status of the charging session.</Description>
     <LangVersion>7.3</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
