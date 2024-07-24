@@ -31,9 +31,9 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineResponse202Data"/> class.
         /// </summary>
-        /// <param name="sessionId">SessionId.</param>
+        /// <param name="sessionId">sessionId.</param>
         public InlineResponse202Data(
-            string sessionId)
+            string sessionId = null)
         {
             this.SessionId = sessionId;
         }
@@ -41,7 +41,7 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Session Id for tracking.
         /// </summary>
-        [JsonProperty("SessionId")]
+        [JsonProperty("sessionId", NullValueHandling = NullValueHandling.Ignore)]
         public string SessionId { get; set; }
 
         /// <inheritdoc/>

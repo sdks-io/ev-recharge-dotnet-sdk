@@ -17,11 +17,11 @@
 
 ```json
 {
-  "RequestId": "9d2dee33-7803-485a-a2b1-2c7538e597ee",
-  "Status": "SUCCESS",
-  "Data": [
+  "requestId": "9d2dee33-7803-485a-a2b1-2c7538e597ee",
+  "status": "SUCCESS",
+  "data": [
     {
-      "SessionId": "c3e332f0-1bb2-4f50-a96b-e075bbb71e68"
+      "sessionId": "c3e332f0-1bb2-4f50-a96b-e075bbb71e68"
     }
   ]
 }

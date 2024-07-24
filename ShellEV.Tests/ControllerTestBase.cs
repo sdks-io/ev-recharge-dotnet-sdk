@@ -49,16 +49,6 @@ namespace ShellEV.Tests
                 .HttpCallBack(HttpCallBack)
                 .Build();
 
-            try
-            {
-                this.Client = this.Client.ToBuilder().ClientCredentialsAuth(Client.ClientCredentialsAuthModel.ToBuilder()
-                    .OAuthToken(this.Client.ClientCredentialsAuth.FetchToken()).Build())
-                    .Build();
-            }
-            catch (ApiException) 
-            {
-                // TODO Auto-generated catch block;
-            }
         }
     }
 }

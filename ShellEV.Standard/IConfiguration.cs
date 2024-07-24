@@ -19,11 +19,6 @@ namespace ShellEV.Standard
         Environment Environment { get; }
 
         /// <summary>
-        /// Gets This variable specifies the type of environment. Environments:   * `api` - Production   * `api-test` - UAT
-        /// </summary>
-        Models.EnvEnum Env { get; }
-
-        /// <summary>
         /// Gets the credentials to use with ClientCredentialsAuth.
         /// </summary>
         IClientCredentialsAuth ClientCredentialsAuth { get; }

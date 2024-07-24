@@ -34,26 +34,24 @@ namespace ShellEV.Standard.Controllers
         internal ChargingController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// This API initiates to start a session on a EVSE (Electric Vehicle Supply Equipement). When the EV Charge Card number and the unique EVSE ID on the location is provided, the session is initiated. .
-        /// Please note that this is an asynchronous request, the request will be passed on to the operator/platform to be processed further. .
+        /// This endpoint start the charging session for the user.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
         /// <param name="body">Optional parameter: Example: .</param>
         /// <returns>Returns the Models.InlineResponse202 response from the API call.</returns>
-        public Models.InlineResponse202 StartChargeSession(
+        public Models.InlineResponse202 Start(
                 Guid requestId,
                 Models.ChargesessionStartBody body = null)
-            => CoreHelper.RunTask(StartChargeSessionAsync(requestId, body));
+            => CoreHelper.RunTask(StartAsync(requestId, body));
 
         /// <summary>
-        /// This API initiates to start a session on a EVSE (Electric Vehicle Supply Equipement). When the EV Charge Card number and the unique EVSE ID on the location is provided, the session is initiated. .
-        /// Please note that this is an asynchronous request, the request will be passed on to the operator/platform to be processed further. .
+        /// This endpoint start the charging session for the user.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
         /// <param name="body">Optional parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.InlineResponse202 response from the API call.</returns>
-        public async Task<Models.InlineResponse202> StartChargeSessionAsync(
+        public async Task<Models.InlineResponse202> StartAsync(
                 Guid requestId,
                 Models.ChargesessionStartBody body = null,
                 CancellationToken cancellationToken = default)
@@ -66,141 +64,119 @@ namespace ShellEV.Standard.Controllers
                       .Header(_header => _header.Setup("RequestId", requestId))
                       .Header(_header => _header.Setup("Content-Type", "application/json"))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad Request\n", (_reason, _context) => new M400ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new HTTP401ErrorResponseException(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Invalid charge token with given EmaId was not found.\n\nBackend HTTP 410 should be transformed to 404.", (_reason, _context) => new M404ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("405", CreateErrorCase("Method Not Allowed", (_reason, _context) => new M405ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("429", CreateErrorCase("Too Many Requests", (_reason, _context) => new M429ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("500", CreateErrorCase("Internal Server Error", (_reason, _context) => new M500ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("503", CreateErrorCase("Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed", (_reason, _context) => new M503ErrorResponseError1Exception(_reason, _context))))
+                  .ErrorCase("400", CreateErrorCase("The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).", (_reason, _context) => new BadRequestException(_reason, _context)))
+                  .ErrorCase("401", CreateErrorCase("The request has not been applied because it lacks valid authentication credentials for the target resource.", (_reason, _context) => new UnauthorizedException(_reason, _context)))
+                  .ErrorCase("404", CreateErrorCase("Location Not Found", (_reason, _context) => new NotFoundException(_reason, _context)))
+                  .ErrorCase("429", CreateErrorCase("The Request reached maximum allocated rate limit", (_reason, _context) => new TooManyRequestsException(_reason, _context)))
+                  .ErrorCase("500", CreateErrorCase("Internal Server error", (_reason, _context) => new InternalServerErrorException(_reason, _context)))
+                  .ErrorCase("503", CreateErrorCase("Service unavailable", (_reason, _context) => new ServiceunavailableException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// This API stops a session by providing the session ID which was retrieved when starting the session. HTTP 202 response will be returned if the request is accepted. Once the session is stopped the response will contain the DateTime on which it is stopped.      operationId: Stop.
+        /// Accepts a request to stop an active session when a valid session id is provided.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
-        /// <param name="uuid">Required parameter: Unique session ID which was generated to activate a charging session..</param>
-        /// <param name="body">Optional parameter: Example: .</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
+        /// <param name="sessionId">Required parameter: Session Id.</param>
         /// <returns>Returns the Models.InlineResponse2021 response from the API call.</returns>
-        public Models.InlineResponse2021 StopChargeSession(
+        public Models.InlineResponse2021 Stop(
                 Guid requestId,
-                Guid uuid,
-                Models.StopChargeSessionRequestBodyJson body = null)
-            => CoreHelper.RunTask(StopChargeSessionAsync(requestId, uuid, body));
+                string sessionId)
+            => CoreHelper.RunTask(StopAsync(requestId, sessionId));
 
         /// <summary>
-        /// This API stops a session by providing the session ID which was retrieved when starting the session. HTTP 202 response will be returned if the request is accepted. Once the session is stopped the response will contain the DateTime on which it is stopped.      operationId: Stop.
+        /// Accepts a request to stop an active session when a valid session id is provided.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
-        /// <param name="uuid">Required parameter: Unique session ID which was generated to activate a charging session..</param>
-        /// <param name="body">Optional parameter: Example: .</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
+        /// <param name="sessionId">Required parameter: Session Id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.InlineResponse2021 response from the API call.</returns>
-        public async Task<Models.InlineResponse2021> StopChargeSessionAsync(
+        public async Task<Models.InlineResponse2021> StopAsync(
                 Guid requestId,
-                Guid uuid,
-                Models.StopChargeSessionRequestBodyJson body = null,
+                string sessionId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.InlineResponse2021>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/ev/v1/charge-session/stop/{uuid}")
+                  .Setup(HttpMethod.Post, "/ev/v1/charge-session/stop")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
-                      .Body(_bodyParameter => _bodyParameter.Setup(body))
                       .Header(_header => _header.Setup("RequestId", requestId))
-                      .Template(_template => _template.Setup("uuid", uuid))
-                      .Header(_header => _header.Setup("Content-Type", "application/json"))))
+                      .Query(_query => _query.Setup("sessionId", sessionId))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad Request\n", (_reason, _context) => new M400ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new M401ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Session not found or Session has already been stopped. Map 410 Error message into 404.", (_reason, _context) => new M404ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("405", CreateErrorCase("Method Not Allowed", (_reason, _context) => new M405ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("429", CreateErrorCase("Too Many Requests", (_reason, _context) => new M429ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("500", CreateErrorCase("Internal Server Error", (_reason, _context) => new M500ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("503", CreateErrorCase("Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed\n", (_reason, _context) => new M503ErrorResponseError1Exception(_reason, _context))))
+                  .ErrorCase("400", CreateErrorCase("The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).", (_reason, _context) => new BadRequestException(_reason, _context)))
+                  .ErrorCase("401", CreateErrorCase("The request has not been applied because it lacks valid authentication credentials for the target resource.", (_reason, _context) => new UnauthorizedException(_reason, _context)))
+                  .ErrorCase("404", CreateErrorCase("Location Not Found", (_reason, _context) => new NotFoundException(_reason, _context)))
+                  .ErrorCase("429", CreateErrorCase("The Request reached maximum allocated rate limit", (_reason, _context) => new TooManyRequestsException(_reason, _context)))
+                  .ErrorCase("500", CreateErrorCase("Internal Server error", (_reason, _context) => new InternalServerErrorException(_reason, _context)))
+                  .ErrorCase("503", CreateErrorCase("Service unavailable", (_reason, _context) => new ServiceunavailableException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// This API retrieves the status and details of the session which was started by the user. The session ID generated earlier needs to be passed in this API in order to retrieve the status.
+        /// This endpoint returns the details of the session if the session is found.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
-        /// <param name="sessionId">Required parameter: Session Id is to be fetched.</param>
-        /// <param name="uuid">Required parameter: Unique session ID which was generated to activate a charging session..</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
+        /// <param name="sessionId">Required parameter: Session Id.</param>
         /// <returns>Returns the Models.GetChargeSessionRetrieveResponse200Json response from the API call.</returns>
         public Models.GetChargeSessionRetrieveResponse200Json GetChargeSessionRetrieve(
                 Guid requestId,
-                string sessionId,
-                Guid uuid)
-            => CoreHelper.RunTask(GetChargeSessionRetrieveAsync(requestId, sessionId, uuid));
+                string sessionId)
+            => CoreHelper.RunTask(GetChargeSessionRetrieveAsync(requestId, sessionId));
 
         /// <summary>
-        /// This API retrieves the status and details of the session which was started by the user. The session ID generated earlier needs to be passed in this API in order to retrieve the status.
+        /// This endpoint returns the details of the session if the session is found.
         /// </summary>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
-        /// <param name="sessionId">Required parameter: Session Id is to be fetched.</param>
-        /// <param name="uuid">Required parameter: Unique session ID which was generated to activate a charging session..</param>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
+        /// <param name="sessionId">Required parameter: Session Id.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.GetChargeSessionRetrieveResponse200Json response from the API call.</returns>
         public async Task<Models.GetChargeSessionRetrieveResponse200Json> GetChargeSessionRetrieveAsync(
                 Guid requestId,
                 string sessionId,
-                Guid uuid,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetChargeSessionRetrieveResponse200Json>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/ev/v1/charge-session/retrieve/{uuid}")
+                  .Setup(HttpMethod.Get, "/ev/v1/charge-session/retrieve")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
-                      .Query(_query => _query.Setup("SessionId", sessionId))
-                      .Template(_template => _template.Setup("uuid", uuid))))
+                      .Query(_query => _query.Setup("sessionId", sessionId))))
               .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad Request", (_reason, _context) => new M400ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new M401ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Not Found", (_reason, _context) => new M404ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("405", CreateErrorCase("Method Not Allowed", (_reason, _context) => new M405ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("429", CreateErrorCase("Too Many Requests", (_reason, _context) => new M429ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("500", CreateErrorCase("Internal Server Error", (_reason, _context) => new M500ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("503", CreateErrorCase("Service Unavailable", (_reason, _context) => new M503ErrorResponseError1Exception(_reason, _context))))
+                  .ErrorCase("400", CreateErrorCase("The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).", (_reason, _context) => new BadRequestException(_reason, _context)))
+                  .ErrorCase("401", CreateErrorCase("The request has not been applied because it lacks valid authentication credentials for the target resource.", (_reason, _context) => new UnauthorizedException(_reason, _context)))
+                  .ErrorCase("404", CreateErrorCase("Location Not Found", (_reason, _context) => new NotFoundException(_reason, _context)))
+                  .ErrorCase("429", CreateErrorCase("The Request reached maximum allocated rate limit", (_reason, _context) => new TooManyRequestsException(_reason, _context)))
+                  .ErrorCase("500", CreateErrorCase("Internal Server error", (_reason, _context) => new InternalServerErrorException(_reason, _context)))
+                  .ErrorCase("503", CreateErrorCase("Service unavailable", (_reason, _context) => new ServiceunavailableException(_reason, _context))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// This API retrieves the list of active sessions for a given set of EMAIds.
+        /// Fetrches the active sessions for user.
         /// </summary>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
         /// <param name="emaId">Required parameter: Emobility Account Identifier(Ema-ID).</param>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
         /// <returns>Returns the Models.ActiveResponse200Json response from the API call.</returns>
         public Models.ActiveResponse200Json Active(
-                string emaId,
-                Guid requestId)
-            => CoreHelper.RunTask(ActiveAsync(emaId, requestId));
+                Guid requestId,
+                string emaId)
+            => CoreHelper.RunTask(ActiveAsync(requestId, emaId));
 
         /// <summary>
-        /// This API retrieves the list of active sessions for a given set of EMAIds.
+        /// Fetrches the active sessions for user.
         /// </summary>
+        /// <param name="requestId"><![CDATA[Required parameter: RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br>.]]></param>
         /// <param name="emaId">Required parameter: Emobility Account Identifier(Ema-ID).</param>
-        /// <param name="requestId">Required parameter: A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request..</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.ActiveResponse200Json response from the API call.</returns>
         public async Task<Models.ActiveResponse200Json> ActiveAsync(
-                string emaId,
                 Guid requestId,
+                string emaId,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ActiveResponse200Json>()
               .RequestBuilder(_requestBuilder => _requestBuilder
                   .Setup(HttpMethod.Get, "/ev/v1/charge-session/active")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("EmaId", emaId))
-                      .Header(_header => _header.Setup("RequestId", requestId))))
-              .ResponseHandler(_responseHandler => _responseHandler
-                  .ErrorCase("400", CreateErrorCase("Bad Request\n", (_reason, _context) => new M400ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("401", CreateErrorCase("Unauthorized", (_reason, _context) => new M401ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("404", CreateErrorCase("Session not found or Session has already been stopped. Map 410 Error message into 404.", (_reason, _context) => new M404ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("405", CreateErrorCase("Method Not Allowed", (_reason, _context) => new M405ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("429", CreateErrorCase("Too Many Requests", (_reason, _context) => new M429ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("500", CreateErrorCase("Internal Server Error", (_reason, _context) => new M500ErrorResponseError1Exception(_reason, _context)))
-                  .ErrorCase("503", CreateErrorCase("Returned when a connectivity failure is encountered like DB connection failed, endpoint failed etc or when max number of retries are completed\n", (_reason, _context) => new M503ErrorResponseError1Exception(_reason, _context))))
+                      .Header(_header => _header.Setup("RequestId", requestId))
+                      .Query(_query => _query.Setup("emaId", emaId))))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

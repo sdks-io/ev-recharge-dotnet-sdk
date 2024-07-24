@@ -34,15 +34,21 @@ namespace ShellEV.Standard.Exceptions
         }
 
         /// <summary>
-        /// Error code
+        /// requestId is unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain.
         /// </summary>
-        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
-        public string Code { get; set; }
+        [JsonProperty("requestId", NullValueHandling = NullValueHandling.Ignore)]
+        public string RequestId { get; set; }
 
         /// <summary>
-        /// Error desctiption in English
+        /// Status of the request
         /// </summary>
-        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
-        public new string Message { get; set; }
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Exception details of the error
+        /// </summary>
+        [JsonProperty("errors", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Models.NotFoundErrMsg> Errors { get; set; }
     }
 }

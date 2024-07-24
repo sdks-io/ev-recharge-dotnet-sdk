@@ -22,13 +22,9 @@ namespace ShellEV.Standard.Models
     public class DataRetrieve
     {
         private DateTime? stoppedAt;
-        private Models.DataRetrieveSessionCodeEnum? sessionCode;
-        private string sessionMessage;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
-            { "StoppedAt", false },
-            { "SessionCode", false },
-            { "SessionMessage", false },
+            { "stoppedAt", false },
         };
 
         /// <summary>
@@ -41,30 +37,29 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="DataRetrieve"/> class.
         /// </summary>
-        /// <param name="id">Id.</param>
-        /// <param name="userId">UserId.</param>
-        /// <param name="emaId">EmaId.</param>
-        /// <param name="evseId">EvseId.</param>
-        /// <param name="startedAt">StartedAt.</param>
-        /// <param name="stoppedAt">StoppedAt.</param>
-        /// <param name="sessionState">SessionState.</param>
-        /// <param name="sessionCode">SessionCode.</param>
-        /// <param name="sessionMessage">SessionMessage.</param>
+        /// <param name="id">id.</param>
+        /// <param name="userId">userId.</param>
+        /// <param name="emaId">emaId.</param>
+        /// <param name="evseId">evseId.</param>
+        /// <param name="lastUpdated">lastUpdated.</param>
+        /// <param name="startedAt">startedAt.</param>
+        /// <param name="stoppedAt">stoppedAt.</param>
+        /// <param name="sessionState">sessionState.</param>
         public DataRetrieve(
             Guid? id = null,
             string userId = null,
             string emaId = null,
             string evseId = null,
+            string lastUpdated = null,
             DateTime? startedAt = null,
             DateTime? stoppedAt = null,
-            Models.DataRetrieveSessionStateEnum? sessionState = null,
-            Models.DataRetrieveSessionCodeEnum? sessionCode = null,
-            string sessionMessage = null)
+            Models.ChargeRetrieveState sessionState = null)
         {
             this.Id = id;
             this.UserId = userId;
             this.EmaId = emaId;
             this.EvseId = evseId;
+            this.LastUpdated = lastUpdated;
             this.StartedAt = startedAt;
             if (stoppedAt != null)
             {
@@ -72,54 +67,50 @@ namespace ShellEV.Standard.Models
             }
 
             this.SessionState = sessionState;
-            if (sessionCode != null)
-            {
-                this.SessionCode = sessionCode;
-            }
-
-            if (sessionMessage != null)
-            {
-                this.SessionMessage = sessionMessage;
-            }
-
         }
 
         /// <summary>
         /// Id of the session
         /// </summary>
-        [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public Guid? Id { get; set; }
 
         /// <summary>
         /// Id of the user that started the session
         /// </summary>
-        [JsonProperty("UserId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
 
         /// <summary>
         /// Id of the evse that the user is charging
         /// </summary>
-        [JsonProperty("EmaId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("emaId", NullValueHandling = NullValueHandling.Ignore)]
         public string EmaId { get; set; }
 
         /// <summary>
         /// Ema-id of the charge token that is used
         /// </summary>
-        [JsonProperty("EvseId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("evseId", NullValueHandling = NullValueHandling.Ignore)]
         public string EvseId { get; set; }
+
+        /// <summary>
+        /// Last updated date
+        /// </summary>
+        [JsonProperty("lastUpdated", NullValueHandling = NullValueHandling.Ignore)]
+        public string LastUpdated { get; set; }
 
         /// <summary>
         /// When the session is started
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("StartedAt", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("startedAt", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? StartedAt { get; set; }
 
         /// <summary>
         /// When the session is stopped
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("StoppedAt")]
+        [JsonProperty("stoppedAt")]
         public DateTime? StoppedAt
         {
             get
@@ -129,52 +120,16 @@ namespace ShellEV.Standard.Models
 
             set
             {
-                this.shouldSerialize["StoppedAt"] = true;
+                this.shouldSerialize["stoppedAt"] = true;
                 this.stoppedAt = value;
             }
         }
 
         /// <summary>
-        /// Describes the session state
+        /// Gets or sets SessionState.
         /// </summary>
-        [JsonProperty("SessionState", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.DataRetrieveSessionStateEnum? SessionState { get; set; }
-
-        /// <summary>
-        /// Session code e.g InternalError
-        /// </summary>
-        [JsonProperty("SessionCode")]
-        public Models.DataRetrieveSessionCodeEnum? SessionCode
-        {
-            get
-            {
-                return this.sessionCode;
-            }
-
-            set
-            {
-                this.shouldSerialize["SessionCode"] = true;
-                this.sessionCode = value;
-            }
-        }
-
-        /// <summary>
-        /// Session message
-        /// </summary>
-        [JsonProperty("SessionMessage")]
-        public string SessionMessage
-        {
-            get
-            {
-                return this.sessionMessage;
-            }
-
-            set
-            {
-                this.shouldSerialize["SessionMessage"] = true;
-                this.sessionMessage = value;
-            }
-        }
+        [JsonProperty("sessionState", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.ChargeRetrieveState SessionState { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -191,23 +146,7 @@ namespace ShellEV.Standard.Models
         /// </summary>
         public void UnsetStoppedAt()
         {
-            this.shouldSerialize["StoppedAt"] = false;
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetSessionCode()
-        {
-            this.shouldSerialize["SessionCode"] = false;
-        }
-
-        /// <summary>
-        /// Marks the field to not be serailized.
-        /// </summary>
-        public void UnsetSessionMessage()
-        {
-            this.shouldSerialize["SessionMessage"] = false;
+            this.shouldSerialize["stoppedAt"] = false;
         }
 
         /// <summary>
@@ -216,25 +155,7 @@ namespace ShellEV.Standard.Models
         /// <returns>A boolean weather the field should be serialized or not.</returns>
         public bool ShouldSerializeStoppedAt()
         {
-            return this.shouldSerialize["StoppedAt"];
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeSessionCode()
-        {
-            return this.shouldSerialize["SessionCode"];
-        }
-
-        /// <summary>
-        /// Checks if the field should be serialized or not.
-        /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
-        public bool ShouldSerializeSessionMessage()
-        {
-            return this.shouldSerialize["SessionMessage"];
+            return this.shouldSerialize["stoppedAt"];
         }
 
         /// <inheritdoc/>
@@ -253,11 +174,10 @@ namespace ShellEV.Standard.Models
                 ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
                 ((this.EmaId == null && other.EmaId == null) || (this.EmaId?.Equals(other.EmaId) == true)) &&
                 ((this.EvseId == null && other.EvseId == null) || (this.EvseId?.Equals(other.EvseId) == true)) &&
+                ((this.LastUpdated == null && other.LastUpdated == null) || (this.LastUpdated?.Equals(other.LastUpdated) == true)) &&
                 ((this.StartedAt == null && other.StartedAt == null) || (this.StartedAt?.Equals(other.StartedAt) == true)) &&
                 ((this.StoppedAt == null && other.StoppedAt == null) || (this.StoppedAt?.Equals(other.StoppedAt) == true)) &&
-                ((this.SessionState == null && other.SessionState == null) || (this.SessionState?.Equals(other.SessionState) == true)) &&
-                ((this.SessionCode == null && other.SessionCode == null) || (this.SessionCode?.Equals(other.SessionCode) == true)) &&
-                ((this.SessionMessage == null && other.SessionMessage == null) || (this.SessionMessage?.Equals(other.SessionMessage) == true));
+                ((this.SessionState == null && other.SessionState == null) || (this.SessionState?.Equals(other.SessionState) == true));
         }
         
         /// <summary>
@@ -270,11 +190,10 @@ namespace ShellEV.Standard.Models
             toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId)}");
             toStringOutput.Add($"this.EmaId = {(this.EmaId == null ? "null" : this.EmaId)}");
             toStringOutput.Add($"this.EvseId = {(this.EvseId == null ? "null" : this.EvseId)}");
+            toStringOutput.Add($"this.LastUpdated = {(this.LastUpdated == null ? "null" : this.LastUpdated)}");
             toStringOutput.Add($"this.StartedAt = {(this.StartedAt == null ? "null" : this.StartedAt.ToString())}");
             toStringOutput.Add($"this.StoppedAt = {(this.StoppedAt == null ? "null" : this.StoppedAt.ToString())}");
             toStringOutput.Add($"this.SessionState = {(this.SessionState == null ? "null" : this.SessionState.ToString())}");
-            toStringOutput.Add($"this.SessionCode = {(this.SessionCode == null ? "null" : this.SessionCode.ToString())}");
-            toStringOutput.Add($"this.SessionMessage = {(this.SessionMessage == null ? "null" : this.SessionMessage)}");
         }
     }
 }

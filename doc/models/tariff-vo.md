@@ -14,7 +14,7 @@ Tariff details for charging on this Connector
 | `StartFee` | `double?` | Optional | Tariff to start a charging session |
 | `PerMinute` | `double?` | Optional | Tariff per minute of charging time |
 | `PerKWh` | `double?` | Optional | Tariff per kWh of energy consumed |
-| `Currency` | `string` | Optional | ISO 4217 Curreny Code of the local currency. |
+| `Currency` | `string` | Optional | ISO 4217 Currency Code of the local currency. |
 | `Updated` | `string` | Optional | ISO8601-compliant UTC datetime of the last update of the Tariff |
 | `UpdatedBy` | [`TariffVOUpdatedByEnum?`](../../doc/models/tariff-vo-updated-by-enum.md) | Optional | Source of the last update of the tariff details |
 | `Structure` | `string` | Optional | Tariff structure that this tariff belongs to, typically Default unless specific tariff is defined for provider |

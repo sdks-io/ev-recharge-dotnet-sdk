@@ -28,10 +28,11 @@ Each Location will contain one or more EVSEs (Electric Vehicle Supply Equipment)
   "uid": 4,
   "externalId": "01001188_1",
   "evseId": "NL*TNM*E01000401*0",
+  "status": "Available",
+  "authorizationMethods": "NewMotionApp",
   "updated": "10/06/2021 10:44:24",
   "deleted": "10/06/2021 10:44:24",
   "physicalReference": "Green",
-  "status": "Available",
   "connectors": [
     {
       "uid": 60,

@@ -31,8 +31,8 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineResponse2021"/> class.
         /// </summary>
-        /// <param name="requestId">RequestId.</param>
-        /// <param name="status">Status.</param>
+        /// <param name="requestId">requestId.</param>
+        /// <param name="status">status.</param>
         public InlineResponse2021(
             Guid requestId,
             Models.InlineResponse2021StatusEnum status)
@@ -44,13 +44,13 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request.
         /// </summary>
-        [JsonProperty("RequestId")]
+        [JsonProperty("requestId")]
         public Guid RequestId { get; set; }
 
         /// <summary>
         /// Indicates overall status of the request
         /// </summary>
-        [JsonProperty("Status")]
+        [JsonProperty("status")]
         public Models.InlineResponse2021StatusEnum Status { get; set; }
 
         /// <inheritdoc/>

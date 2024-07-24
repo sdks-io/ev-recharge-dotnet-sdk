@@ -66,7 +66,7 @@ namespace ShellEV.Standard.Models
         }
 
         /// <summary>
-        /// Identifies the marker type. If it''s a `SingleLocationMarker`, then the value is `SingleLocation`
+        /// Identifies the marker type. If it’s a `SingleLocationMarker`, then the value is `SingleLocation`
         /// </summary>
         [JsonConverter(typeof(JsonStringConverter), true)]
         [JsonProperty("markerType")]

@@ -31,9 +31,9 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="GetChargeSessionRetrieveResponse200Json"/> class.
         /// </summary>
-        /// <param name="requestId">RequestId.</param>
-        /// <param name="status">Status.</param>
-        /// <param name="data">Data.</param>
+        /// <param name="requestId">requestId.</param>
+        /// <param name="status">status.</param>
+        /// <param name="data">data.</param>
         public GetChargeSessionRetrieveResponse200Json(
             Guid requestId,
             Models.GetChargeSessionRetrieveResponse200JsonStatusEnum status,
@@ -45,21 +45,21 @@ namespace ShellEV.Standard.Models
         }
 
         /// <summary>
-        /// A unique request id in GUID format. The value is written to the Shell API Platform audit log for end to end traceability of a request.
+        /// Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request.
         /// </summary>
-        [JsonProperty("RequestId")]
+        [JsonProperty("requestId")]
         public Guid RequestId { get; set; }
 
         /// <summary>
         /// Indicates overall status of the request
         /// </summary>
-        [JsonProperty("Status")]
+        [JsonProperty("status")]
         public Models.GetChargeSessionRetrieveResponse200JsonStatusEnum Status { get; set; }
 
         /// <summary>
         /// Gets or sets Data.
         /// </summary>
-        [JsonProperty("Data", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.DataRetrieve> Data { get; set; }
 
         /// <inheritdoc/>

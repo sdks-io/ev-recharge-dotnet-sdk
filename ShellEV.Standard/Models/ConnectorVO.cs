@@ -99,7 +99,7 @@ namespace ShellEV.Standard.Models
         public Models.TariffVO Tariff { get; set; }
 
         /// <summary>
-        /// ISO8601-compliant UTC datetime of the last update of the Connectors's data
+        /// ISO8601-compliant UTC datetime of the last update of the Connector’s data
         /// </summary>
         [JsonProperty("updated", NullValueHandling = NullValueHandling.Ignore)]
         public string Updated { get; set; }

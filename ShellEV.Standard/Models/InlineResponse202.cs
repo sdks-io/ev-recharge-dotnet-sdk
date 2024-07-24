@@ -31,9 +31,9 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineResponse202"/> class.
         /// </summary>
-        /// <param name="requestId">RequestId.</param>
-        /// <param name="status">Status.</param>
-        /// <param name="data">Data.</param>
+        /// <param name="requestId">requestId.</param>
+        /// <param name="status">status.</param>
+        /// <param name="data">data.</param>
         public InlineResponse202(
             Guid requestId,
             Models.InlineResponse202StatusEnum status,
@@ -47,19 +47,19 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Mandatory UUID (according to RFC 4122 standards) for requests and responses. This will be played back in the response from the request.
         /// </summary>
-        [JsonProperty("RequestId")]
+        [JsonProperty("requestId")]
         public Guid RequestId { get; set; }
 
         /// <summary>
         /// Indicates overall status of the request
         /// </summary>
-        [JsonProperty("Status")]
+        [JsonProperty("status")]
         public Models.InlineResponse202StatusEnum Status { get; set; }
 
         /// <summary>
         /// Gets or sets Data.
         /// </summary>
-        [JsonProperty("Data")]
+        [JsonProperty("data")]
         public List<Models.InlineResponse202Data> Data { get; set; }
 
         /// <inheritdoc/>

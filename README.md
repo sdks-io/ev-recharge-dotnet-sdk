@@ -3,14 +3,23 @@
 
 ## Introduction
 
-This API Product provides the option to manage charging at all public Shell Recharge locations. The end points provides control to start, stop and get status of the charging session.
+This API Product provides the list of all Shell Recharge locations. The list includes all Shell Recharge network and all locations available through our roaming partners.
 
-Supported Function
+Supported Functions
 
-* Start a charging session
-* Stop a charging session
-* Retrieve the status of a charging session
-* Retrieve the list of all active sessions for a card   termsOfService: 'https://developer.shell.com/terms-of-use'
+* Get the list of all the locations and its details.
+* Get the details of a particular location.
+* Get the list of locations nearby using the latitude and longitude.
+* Get the list of locations for a given set of bounds with different zoom levels.
+
+The Charging endpoints provides control to start, stop and get status of the charging session.
+
+Supported Functions
+
+* Start a charging session\n
+* Stop a charging session \n
+* Retrieve the status of a charging session \n
+* Retrieve the list of all active sessions for a card
 
 Go to the Shell Developer Portal: [https://developer.shell.com](https://developer.shell.com)
 
@@ -19,11 +28,11 @@ Go to the Shell Developer Portal: [https://developer.shell.com](https://develope
 If you are building with .NET CLI tools then you can also use the following command:
 
 ```bash
-dotnet add package sdksio.EvRechargeSDK --version 1.0.0
+dotnet add package sdksio.EvRechargeSDK --version 1.1.0
 ```
 
 You can also view the package at:
-https://www.nuget.org/packages/sdksio.EvRechargeSDK/1.0.0
+https://www.nuget.org/packages/sdksio.EvRechargeSDK/1.1.0
 
 ## Test the SDK
 
@@ -31,16 +40,15 @@ The generated SDK also contain one or more Tests, which are contained in the Tes
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| `Env` | `Models.EnvEnum` | This variable specifies the type of environment. Environments:<br><br>* `api` - Production<br>* `api-test` - UAT<br>*Default*: `EnvEnum.Enum_apitestshellcom` |
 | `Environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
-| `ClientCredentialsAuth` | [`ClientCredentialsAuth`](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
+| `ClientCredentialsAuth` | [`ClientCredentialsAuth`](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
 
 The API client can be initialized as follows:
 
@@ -53,31 +61,40 @@ ShellEV.Standard.ShellEVClient client = new ShellEV.Standard.ShellEVClient.Build
         )
         .Build())
     .Environment(ShellEV.Standard.Environment.Production)
-    .Env(EnvEnum.EnumApitestshellcom)
     .Build();
 ```
+
+## Environments
+
+The SDK can be configured to use a different environment for making API calls. Available environments are:
+
+### Fields
+
+| Name | Description |
+|  --- | --- |
+| production | **Default** Production |
+| environment2 | Test |
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/oauth-2-client-credentials-grant.md)
+* [`BearerAuth (OAuth 2 Client Credentials Grant)`](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/$a/https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [O Auth Authorization](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/controllers/o-auth-authorization.md)
-* [Charging](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/controllers/charging.md)
-* [Locations](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/controllers/locations.md)
+* [Locations](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/controllers/locations.md)
+* [Charging](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/controllers/charging.md)
 
 ## Classes Documentation
 
-* [Utility Classes](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/utility-classes.md)
-* [HttpRequest](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-request.md)
-* [HttpResponse](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-response.md)
-* [HttpStringResponse](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-string-response.md)
-* [HttpContext](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-context.md)
-* [HttpClientConfiguration](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-client-configuration.md)
-* [HttpClientConfiguration Builder](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/http-client-configuration-builder.md)
-* [IAuthManager](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/i-auth-manager.md)
-* [ApiException](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.0.0/doc/api-exception.md)
+* [Utility Classes](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/utility-classes.md)
+* [HttpRequest](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-request.md)
+* [HttpResponse](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-response.md)
+* [HttpStringResponse](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-string-response.md)
+* [HttpContext](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-context.md)
+* [HttpClientConfiguration](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-client-configuration.md)
+* [HttpClientConfiguration Builder](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/http-client-configuration-builder.md)
+* [IAuthManager](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/i-auth-manager.md)
+* [ApiException](https://www.github.com/sdks-io/ev-recharge-dotnet-sdk/tree/1.1.0/doc/api-exception.md)
 

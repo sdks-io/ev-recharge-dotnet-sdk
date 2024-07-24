@@ -75,7 +75,7 @@ namespace ShellEV.Standard.Models
         public double? PerKWh { get; set; }
 
         /// <summary>
-        /// ISO 4217 Curreny Code of the local currency.
+        /// ISO 4217 Currency Code of the local currency.
         /// </summary>
         [JsonProperty("currency", NullValueHandling = NullValueHandling.Ignore)]
         public string Currency { get; set; }

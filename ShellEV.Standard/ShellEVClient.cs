@@ -27,7 +27,13 @@ namespace ShellEV.Standard
             {
                 Environment.Production, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://{env}" },
+                    { Server.Default, "https://api.shell.com" },
+                }
+            },
+            {
+                Environment.Environment2, new Dictionary<Enum, string>
+                {
+                    { Server.Default, "https://api-test.shell.com" },
                 }
             },
         };
@@ -35,19 +41,17 @@ namespace ShellEV.Standard
         private readonly GlobalConfiguration globalConfiguration;
         private const string userAgent = "APIMATIC 3.0";
         private readonly HttpCallBack httpCallBack;
-        private readonly Lazy<ChargingController> charging;
         private readonly Lazy<LocationsController> locations;
+        private readonly Lazy<ChargingController> charging;
         private readonly Lazy<OAuthAuthorizationController> oAuthAuthorization;
 
         private ShellEVClient(
             Environment environment,
-            Models.EnvEnum env,
             ClientCredentialsAuthModel clientCredentialsAuthModel,
             HttpCallBack httpCallBack,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.Environment = environment;
-            this.Env = env;
             this.httpCallBack = httpCallBack;
             this.HttpClientConfiguration = httpClientConfiguration;
             ClientCredentialsAuthModel = clientCredentialsAuthModel;
@@ -60,30 +64,28 @@ namespace ShellEV.Standard
                 .ApiCallback(httpCallBack)
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
-                .Parameters(globalParameter => globalParameter
-                    .Template(templateParameter => templateParameter.Setup("env", ApiHelper.JsonSerialize(this.Env).Trim('\"'))))
                 .UserAgent(userAgent)
                 .Build();
 
             ClientCredentialsAuth = clientCredentialsAuthManager;
 
-            this.charging = new Lazy<ChargingController>(
-                () => new ChargingController(globalConfiguration));
             this.locations = new Lazy<LocationsController>(
                 () => new LocationsController(globalConfiguration));
+            this.charging = new Lazy<ChargingController>(
+                () => new ChargingController(globalConfiguration));
             this.oAuthAuthorization = new Lazy<OAuthAuthorizationController>(
                 () => new OAuthAuthorizationController(globalConfiguration));
         }
 
         /// <summary>
-        /// Gets ChargingController controller.
-        /// </summary>
-        public ChargingController ChargingController => this.charging.Value;
-
-        /// <summary>
         /// Gets LocationsController controller.
         /// </summary>
         public LocationsController LocationsController => this.locations.Value;
+
+        /// <summary>
+        /// Gets ChargingController controller.
+        /// </summary>
+        public ChargingController ChargingController => this.charging.Value;
 
         /// <summary>
         /// Gets OAuthAuthorizationController controller.
@@ -100,12 +102,6 @@ namespace ShellEV.Standard
         /// Current API environment.
         /// </summary>
         public Environment Environment { get; }
-
-        /// <summary>
-        /// Gets Env.
-        /// This variable specifies the type of environment. Environments:   * `api` - Production   * `api-test` - UAT.
-        /// </summary>
-        public Models.EnvEnum Env { get; }
 
         /// <summary>
         /// Gets http callback.
@@ -141,7 +137,6 @@ namespace ShellEV.Standard
         {
             Builder builder = new Builder()
                 .Environment(this.Environment)
-                .Env(this.Env)
                 .HttpCallBack(httpCallBack)
                 .HttpClientConfig(config => config.Build());
 
@@ -158,7 +153,6 @@ namespace ShellEV.Standard
         {
             return
                 $"Environment = {this.Environment}, " +
-                $"Env = {this.Env}, " +
                 $"HttpClientConfiguration = {this.HttpClientConfiguration}, ";
         }
 
@@ -171,18 +165,12 @@ namespace ShellEV.Standard
             var builder = new Builder();
 
             string environment = System.Environment.GetEnvironmentVariable("SHELL_EV_STANDARD_ENVIRONMENT");
-            string env = System.Environment.GetEnvironmentVariable("SHELL_EV_STANDARD_ENV");
             string oAuthClientId = System.Environment.GetEnvironmentVariable("SHELL_EV_STANDARD_O_AUTH_CLIENT_ID");
             string oAuthClientSecret = System.Environment.GetEnvironmentVariable("SHELL_EV_STANDARD_O_AUTH_CLIENT_SECRET");
 
             if (environment != null)
             {
                 builder.Environment(ApiHelper.JsonDeserialize<Environment>($"\"{environment}\""));
-            }
-
-            if (env != null)
-            {
-                builder.Env(ApiHelper.JsonDeserialize<Models.EnvEnum>($"\"{env}\""));
             }
 
             if (oAuthClientId != null && oAuthClientSecret != null)
@@ -201,7 +189,6 @@ namespace ShellEV.Standard
         public class Builder
         {
             private Environment environment = ShellEV.Standard.Environment.Production;
-            private Models.EnvEnum env = Models.EnvEnum.EnumApitestshellcom;
             private ClientCredentialsAuthModel clientCredentialsAuthModel = new ClientCredentialsAuthModel();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
             private HttpCallBack httpCallBack;
@@ -230,17 +217,6 @@ namespace ShellEV.Standard
             public Builder Environment(Environment environment)
             {
                 this.environment = environment;
-                return this;
-            }
-
-            /// <summary>
-            /// Sets Env.
-            /// </summary>
-            /// <param name="env"> Env. </param>
-            /// <returns> Builder. </returns>
-            public Builder Env(Models.EnvEnum env)
-            {
-                this.env = env;
                 return this;
             }
 
@@ -286,7 +262,6 @@ namespace ShellEV.Standard
                 }
                 return new ShellEVClient(
                     environment,
-                    env,
                     clientCredentialsAuthModel,
                     httpCallBack,
                     httpClientConfig.Build());

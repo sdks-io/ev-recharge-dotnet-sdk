@@ -17,5 +17,11 @@ namespace ShellEV.Standard
         /// </summary>
         [EnumMember(Value = "production")]
         Production,
+
+        /// <summary>
+        /// Test.
+        /// </summary>
+        [EnumMember(Value = "environment2")]
+        Environment2,
     }
 }

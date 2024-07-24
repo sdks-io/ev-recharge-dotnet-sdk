@@ -31,8 +31,8 @@ namespace ShellEV.Standard.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ChargesessionStartBody"/> class.
         /// </summary>
-        /// <param name="evChargeNumber">EvChargeNumber.</param>
-        /// <param name="evseId">EvseId.</param>
+        /// <param name="evChargeNumber">evChargeNumber.</param>
+        /// <param name="evseId">evseId.</param>
         public ChargesessionStartBody(
             string evChargeNumber,
             string evseId)
@@ -42,15 +42,15 @@ namespace ShellEV.Standard.Models
         }
 
         /// <summary>
-        /// The EV Charge Number which can be found on the back of the Shell EV Card
+        /// Ev charge number
         /// </summary>
-        [JsonProperty("EvChargeNumber")]
+        [JsonProperty("evChargeNumber")]
         public string EvChargeNumber { get; set; }
 
         /// <summary>
-        /// Standard EVSE (Electric Vehicle Supply Equipment) Id identifier (ISO-IEC-15118)
+        /// This is the Electric Vehicle EquipmentID
         /// </summary>
-        [JsonProperty("EvseId")]
+        [JsonProperty("evseId")]
         public string EvseId { get; set; }
 
         /// <inheritdoc/>
