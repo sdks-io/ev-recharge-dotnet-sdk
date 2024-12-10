@@ -1,24 +1,24 @@
 // <copyright file="ChargingControllerTest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities;
+using Newtonsoft.Json.Converters;
+using NUnit.Framework;
+using ShellEV.Standard;
+using ShellEV.Standard.Controllers;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Http.Response;
+using ShellEV.Standard.Models.Containers;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities;
-    using Newtonsoft.Json.Converters;
-    using NUnit.Framework;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Controllers;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Http.Response;
-    using ShellEV.Standard.Models.Containers;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// ChargingControllerTest.
     /// </summary>

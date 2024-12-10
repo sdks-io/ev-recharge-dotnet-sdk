@@ -1,19 +1,18 @@
 // <copyright file="ShellEVClient.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using APIMatic.Core;
+using APIMatic.Core.Authentication;
+using ShellEV.Standard.Authentication;
+using ShellEV.Standard.Controllers;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using APIMatic.Core;
-    using APIMatic.Core.Authentication;
-    using APIMatic.Core.Types;
-    using ShellEV.Standard.Authentication;
-    using ShellEV.Standard.Controllers;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// The gateway for the SDK. This class acts as a factory for Controller and
     /// holds the configuration of the SDK.
@@ -27,20 +26,22 @@ namespace ShellEV.Standard
             {
                 Environment.Production, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://api.shell.com" },
+                    { Server.Default, "https://api.shell.com/ev/v1" },
+                    { Server.AccessTokenServer, "https://api.shell.com/v1/oauth" },
                 }
             },
             {
                 Environment.Environment2, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://api-test.shell.com" },
+                    { Server.Default, "https://api-test.shell.com/ev/v1" },
+                    { Server.AccessTokenServer, "https://api.shell.com/v1/oauth" },
                 }
             },
         };
 
         private readonly GlobalConfiguration globalConfiguration;
         private const string userAgent = "APIMATIC 3.0";
-        private readonly HttpCallBack httpCallBack;
+        private readonly HttpCallback httpCallback;
         private readonly Lazy<LocationsController> locations;
         private readonly Lazy<ChargingController> charging;
         private readonly Lazy<OAuthAuthorizationController> oAuthAuthorization;
@@ -48,11 +49,11 @@ namespace ShellEV.Standard
         private ShellEVClient(
             Environment environment,
             ClientCredentialsAuthModel clientCredentialsAuthModel,
-            HttpCallBack httpCallBack,
+            HttpCallback httpCallback,
             IHttpClientConfiguration httpClientConfiguration)
         {
             this.Environment = environment;
-            this.httpCallBack = httpCallBack;
+            this.httpCallback = httpCallback;
             this.HttpClientConfiguration = httpClientConfiguration;
             ClientCredentialsAuthModel = clientCredentialsAuthModel;
             var clientCredentialsAuthManager = new ClientCredentialsAuthManager(clientCredentialsAuthModel);
@@ -61,7 +62,7 @@ namespace ShellEV.Standard
                 .AuthManagers(new Dictionary<string, AuthManager> {
                     {"BearerAuth", clientCredentialsAuthManager},
                 })
-                .ApiCallback(httpCallBack)
+                .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
                 .ServerUrls(EnvironmentsMap[environment], Server.Default)
                 .UserAgent(userAgent)
@@ -106,7 +107,7 @@ namespace ShellEV.Standard
         /// <summary>
         /// Gets http callback.
         /// </summary>
-        internal HttpCallBack HttpCallBack => this.httpCallBack;
+        public HttpCallback HttpCallback => this.httpCallback;
 
         /// <summary>
         /// Gets the credentials to use with ClientCredentialsAuth.
@@ -137,7 +138,7 @@ namespace ShellEV.Standard
         {
             Builder builder = new Builder()
                 .Environment(this.Environment)
-                .HttpCallBack(httpCallBack)
+                .HttpCallback(httpCallback)
                 .HttpClientConfig(config => config.Build());
 
             if (ClientCredentialsAuthModel != null)
@@ -191,7 +192,7 @@ namespace ShellEV.Standard
             private Environment environment = ShellEV.Standard.Environment.Production;
             private ClientCredentialsAuthModel clientCredentialsAuthModel = new ClientCredentialsAuthModel();
             private HttpClientConfiguration.Builder httpClientConfig = new HttpClientConfiguration.Builder();
-            private HttpCallBack httpCallBack;
+            private HttpCallback httpCallback;
 
             /// <summary>
             /// Sets credentials for ClientCredentialsAuth.
@@ -267,16 +268,15 @@ namespace ShellEV.Standard
             }
 
 
-           
 
             /// <summary>
-            /// Sets the HttpCallBack for the Builder.
+            /// Sets the HttpCallback for the Builder.
             /// </summary>
-            /// <param name="httpCallBack"> http callback. </param>
+            /// <param name="httpCallback"> http callback. </param>
             /// <returns>Builder.</returns>
-            internal Builder HttpCallBack(HttpCallBack httpCallBack)
+            public Builder HttpCallback(HttpCallback httpCallback)
             {
-                this.httpCallBack = httpCallBack;
+                this.httpCallback = httpCallback;
                 return this;
             }
 
@@ -293,7 +293,7 @@ namespace ShellEV.Standard
                 return new ShellEVClient(
                     environment,
                     clientCredentialsAuthModel,
-                    httpCallBack,
+                    httpCallback,
                     httpClientConfig.Build());
             }
         }

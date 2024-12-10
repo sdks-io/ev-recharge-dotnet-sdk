@@ -1,11 +1,12 @@
 // <copyright file="Environment.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace ShellEV.Standard
 {
-    using System.Runtime.Serialization;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
     /// <summary>
     /// Available environments.
     /// </summary>
@@ -13,13 +14,13 @@ namespace ShellEV.Standard
     public enum Environment
     {
         /// <summary>
-        /// Production.
+        /// Production Server.
         /// </summary>
         [EnumMember(Value = "production")]
         Production,
 
         /// <summary>
-        /// Test.
+        /// Test Server.
         /// </summary>
         [EnumMember(Value = "environment2")]
         Environment2,

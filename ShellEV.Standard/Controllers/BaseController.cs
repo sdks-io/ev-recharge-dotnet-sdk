@@ -1,18 +1,18 @@
 // <copyright file="BaseController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core;
+using APIMatic.Core.Http.Configuration;
+using APIMatic.Core.Response;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Http.Request;
+using ShellEV.Standard.Http.Response;
+using ShellEV.Standard.Utilities;
+using System;
+
 namespace ShellEV.Standard.Controllers
 {
-    using APIMatic.Core;
-    using APIMatic.Core.Http.Configuration;
-    using APIMatic.Core.Response;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Http.Request;
-    using ShellEV.Standard.Http.Response;
-    using ShellEV.Standard.Utilities;
-    using System;
-
     /// <summary>
     /// The base class for all controller classes.
     /// </summary>

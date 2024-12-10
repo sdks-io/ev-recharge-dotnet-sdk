@@ -1,4 +1,4 @@
-// <copyright file="TariffVO.cs" company="APIMatic">
+// <copyright file="Tariff.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 using System;
@@ -17,19 +17,19 @@ using ShellEV.Standard.Utilities;
 namespace ShellEV.Standard.Models
 {
     /// <summary>
-    /// TariffVO.
+    /// Tariff.
     /// </summary>
-    public class TariffVO
+    public class Tariff
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TariffVO"/> class.
+        /// Initializes a new instance of the <see cref="Tariff"/> class.
         /// </summary>
-        public TariffVO()
+        public Tariff()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TariffVO"/> class.
+        /// Initializes a new instance of the <see cref="Tariff"/> class.
         /// </summary>
         /// <param name="startFee">startFee.</param>
         /// <param name="perMinute">perMinute.</param>
@@ -38,7 +38,7 @@ namespace ShellEV.Standard.Models
         /// <param name="updated">updated.</param>
         /// <param name="updatedBy">updatedBy.</param>
         /// <param name="structure">structure.</param>
-        public TariffVO(
+        public Tariff(
             double? startFee = null,
             double? perMinute = null,
             double? perKWh = null,
@@ -103,7 +103,7 @@ namespace ShellEV.Standard.Models
         {
             var toStringOutput = new List<string>();
             this.ToString(toStringOutput);
-            return $"TariffVO : ({string.Join(", ", toStringOutput)})";
+            return $"Tariff : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -112,7 +112,7 @@ namespace ShellEV.Standard.Models
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
 
-            return obj is TariffVO other &&
+            return obj is Tariff other &&
                 (this.StartFee == null && other.StartFee == null ||
                  this.StartFee?.Equals(other.StartFee) == true) &&
                 (this.PerMinute == null && other.PerMinute == null ||

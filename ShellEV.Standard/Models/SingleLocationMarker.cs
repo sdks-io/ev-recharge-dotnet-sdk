@@ -1,21 +1,21 @@
 // <copyright file="SingleLocationMarker.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// SingleLocationMarker.
     /// </summary>
@@ -81,7 +81,7 @@ namespace ShellEV.Standard.Models
         public string UniqueKey { get; set; }
 
         /// <summary>
-        /// Minimum of all status values in the Marker, e.g. if at least one Evse in the Marker is available, the value will be available
+        /// Gets or sets Status.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public Models.SingleLocationMarkerStatusEnum? Status { get; set; }
@@ -134,52 +134,55 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"SingleLocationMarker : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is SingleLocationMarker other &&                ((this.MarkerType == null && other.MarkerType == null) || (this.MarkerType?.Equals(other.MarkerType) == true)) &&
-                ((this.UniqueKey == null && other.UniqueKey == null) || (this.UniqueKey?.Equals(other.UniqueKey) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Coordinates == null && other.Coordinates == null) || (this.Coordinates?.Equals(other.Coordinates) == true)) &&
-                ((this.EvseCount == null && other.EvseCount == null) || (this.EvseCount?.Equals(other.EvseCount) == true)) &&
-                ((this.MaxPower == null && other.MaxPower == null) || (this.MaxPower?.Equals(other.MaxPower) == true)) &&
-                ((this.GeoHash == null && other.GeoHash == null) || (this.GeoHash?.Equals(other.GeoHash) == true)) &&
-                ((this.LocationUid == null && other.LocationUid == null) || (this.LocationUid?.Equals(other.LocationUid) == true)) &&
-                ((this.AuthorizationMethods == null && other.AuthorizationMethods == null) || (this.AuthorizationMethods?.Equals(other.AuthorizationMethods) == true)) &&
-                ((this.OperatorId == null && other.OperatorId == null) || (this.OperatorId?.Equals(other.OperatorId) == true));
+            return obj is SingleLocationMarker other &&
+                (this.MarkerType == null && other.MarkerType == null ||
+                 this.MarkerType?.Equals(other.MarkerType) == true) &&
+                (this.UniqueKey == null && other.UniqueKey == null ||
+                 this.UniqueKey?.Equals(other.UniqueKey) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Coordinates == null && other.Coordinates == null ||
+                 this.Coordinates?.Equals(other.Coordinates) == true) &&
+                (this.EvseCount == null && other.EvseCount == null ||
+                 this.EvseCount?.Equals(other.EvseCount) == true) &&
+                (this.MaxPower == null && other.MaxPower == null ||
+                 this.MaxPower?.Equals(other.MaxPower) == true) &&
+                (this.GeoHash == null && other.GeoHash == null ||
+                 this.GeoHash?.Equals(other.GeoHash) == true) &&
+                (this.LocationUid == null && other.LocationUid == null ||
+                 this.LocationUid?.Equals(other.LocationUid) == true) &&
+                (this.AuthorizationMethods == null && other.AuthorizationMethods == null ||
+                 this.AuthorizationMethods?.Equals(other.AuthorizationMethods) == true) &&
+                (this.OperatorId == null && other.OperatorId == null ||
+                 this.OperatorId?.Equals(other.OperatorId) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MarkerType = {(this.MarkerType == null ? "null" : this.MarkerType)}");
-            toStringOutput.Add($"this.UniqueKey = {(this.UniqueKey == null ? "null" : this.UniqueKey)}");
+            toStringOutput.Add($"this.MarkerType = {this.MarkerType ?? "null"}");
+            toStringOutput.Add($"this.UniqueKey = {this.UniqueKey ?? "null"}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status.ToString())}");
             toStringOutput.Add($"this.Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
             toStringOutput.Add($"this.EvseCount = {(this.EvseCount == null ? "null" : this.EvseCount.ToString())}");
             toStringOutput.Add($"this.MaxPower = {(this.MaxPower == null ? "null" : this.MaxPower.ToString())}");
-            toStringOutput.Add($"this.GeoHash = {(this.GeoHash == null ? "null" : this.GeoHash)}");
+            toStringOutput.Add($"this.GeoHash = {this.GeoHash ?? "null"}");
             toStringOutput.Add($"this.LocationUid = {(this.LocationUid == null ? "null" : this.LocationUid.ToString())}");
             toStringOutput.Add($"this.AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : $"[{string.Join(", ", this.AuthorizationMethods)} ]")}");
-            toStringOutput.Add($"this.OperatorId = {(this.OperatorId == null ? "null" : this.OperatorId)}");
+            toStringOutput.Add($"this.OperatorId = {this.OperatorId ?? "null"}");
         }
     }
 }

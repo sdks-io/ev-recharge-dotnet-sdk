@@ -1,21 +1,21 @@
 // <copyright file="ElectricalProperties.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// ElectricalProperties.
     /// </summary>
@@ -48,7 +48,7 @@ namespace ShellEV.Standard.Models
         }
 
         /// <summary>
-        /// Power Type used in this connector.
+        /// Gets or sets PowerType.
         /// </summary>
         [JsonProperty("powerType", NullValueHandling = NullValueHandling.Ignore)]
         public Models.ElectricalPropertiesPowerTypeEnum? PowerType { get; set; }
@@ -75,30 +75,27 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"ElectricalProperties : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is ElectricalProperties other &&                ((this.PowerType == null && other.PowerType == null) || (this.PowerType?.Equals(other.PowerType) == true)) &&
-                ((this.Voltage == null && other.Voltage == null) || (this.Voltage?.Equals(other.Voltage) == true)) &&
-                ((this.Amperage == null && other.Amperage == null) || (this.Amperage?.Equals(other.Amperage) == true)) &&
-                ((this.MaxElectricPower == null && other.MaxElectricPower == null) || (this.MaxElectricPower?.Equals(other.MaxElectricPower) == true));
+            return obj is ElectricalProperties other &&
+                (this.PowerType == null && other.PowerType == null ||
+                 this.PowerType?.Equals(other.PowerType) == true) &&
+                (this.Voltage == null && other.Voltage == null ||
+                 this.Voltage?.Equals(other.Voltage) == true) &&
+                (this.Amperage == null && other.Amperage == null ||
+                 this.Amperage?.Equals(other.Amperage) == true) &&
+                (this.MaxElectricPower == null && other.MaxElectricPower == null ||
+                 this.MaxElectricPower?.Equals(other.MaxElectricPower) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>

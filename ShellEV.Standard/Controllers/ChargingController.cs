@@ -1,28 +1,28 @@
 // <copyright file="ChargingController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using APIMatic.Core;
+using APIMatic.Core.Types;
+using APIMatic.Core.Utilities;
+using APIMatic.Core.Utilities.Date.Xml;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Utilities;
+using System.Net.Http;
+
 namespace ShellEV.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using APIMatic.Core;
-    using APIMatic.Core.Types;
-    using APIMatic.Core.Utilities;
-    using APIMatic.Core.Utilities.Date.Xml;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Utilities;
-    using System.Net.Http;
-
     /// <summary>
     /// ChargingController.
     /// </summary>
@@ -57,7 +57,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.InlineResponse202>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/ev/v1/charge-session/start")
+                  .Setup(HttpMethod.Post, "/charge-session/start")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Body(_bodyParameter => _bodyParameter.Setup(body))
@@ -96,7 +96,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.InlineResponse2021>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/ev/v1/charge-session/stop")
+                  .Setup(HttpMethod.Post, "/charge-session/stop")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
@@ -134,7 +134,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.GetChargeSessionRetrieveResponse200Json>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/ev/v1/charge-session/retrieve")
+                  .Setup(HttpMethod.Get, "/charge-session/retrieve")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
@@ -172,7 +172,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.ActiveResponse200Json>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/ev/v1/charge-session/active")
+                  .Setup(HttpMethod.Get, "/charge-session/active")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))

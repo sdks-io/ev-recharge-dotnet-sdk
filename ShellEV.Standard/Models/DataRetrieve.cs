@@ -1,21 +1,21 @@
 // <copyright file="DataRetrieve.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// DataRetrieve.
     /// </summary>
@@ -61,11 +61,11 @@ namespace ShellEV.Standard.Models
             this.EvseId = evseId;
             this.LastUpdated = lastUpdated;
             this.StartedAt = startedAt;
+
             if (stoppedAt != null)
             {
                 this.StoppedAt = stoppedAt;
             }
-
             this.SessionState = sessionState;
         }
 
@@ -135,14 +135,12 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"DataRetrieve : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetStoppedAt()
         {
@@ -161,25 +159,28 @@ namespace ShellEV.Standard.Models
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is DataRetrieve other &&                ((this.Id == null && other.Id == null) || (this.Id?.Equals(other.Id) == true)) &&
-                ((this.UserId == null && other.UserId == null) || (this.UserId?.Equals(other.UserId) == true)) &&
-                ((this.EmaId == null && other.EmaId == null) || (this.EmaId?.Equals(other.EmaId) == true)) &&
-                ((this.EvseId == null && other.EvseId == null) || (this.EvseId?.Equals(other.EvseId) == true)) &&
-                ((this.LastUpdated == null && other.LastUpdated == null) || (this.LastUpdated?.Equals(other.LastUpdated) == true)) &&
-                ((this.StartedAt == null && other.StartedAt == null) || (this.StartedAt?.Equals(other.StartedAt) == true)) &&
-                ((this.StoppedAt == null && other.StoppedAt == null) || (this.StoppedAt?.Equals(other.StoppedAt) == true)) &&
-                ((this.SessionState == null && other.SessionState == null) || (this.SessionState?.Equals(other.SessionState) == true));
+            return obj is DataRetrieve other &&
+                (this.Id == null && other.Id == null ||
+                 this.Id?.Equals(other.Id) == true) &&
+                (this.UserId == null && other.UserId == null ||
+                 this.UserId?.Equals(other.UserId) == true) &&
+                (this.EmaId == null && other.EmaId == null ||
+                 this.EmaId?.Equals(other.EmaId) == true) &&
+                (this.EvseId == null && other.EvseId == null ||
+                 this.EvseId?.Equals(other.EvseId) == true) &&
+                (this.LastUpdated == null && other.LastUpdated == null ||
+                 this.LastUpdated?.Equals(other.LastUpdated) == true) &&
+                (this.StartedAt == null && other.StartedAt == null ||
+                 this.StartedAt?.Equals(other.StartedAt) == true) &&
+                (this.StoppedAt == null && other.StoppedAt == null ||
+                 this.StoppedAt?.Equals(other.StoppedAt) == true) &&
+                (this.SessionState == null && other.SessionState == null ||
+                 this.SessionState?.Equals(other.SessionState) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -187,10 +188,10 @@ namespace ShellEV.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id.ToString())}");
-            toStringOutput.Add($"this.UserId = {(this.UserId == null ? "null" : this.UserId)}");
-            toStringOutput.Add($"this.EmaId = {(this.EmaId == null ? "null" : this.EmaId)}");
-            toStringOutput.Add($"this.EvseId = {(this.EvseId == null ? "null" : this.EvseId)}");
-            toStringOutput.Add($"this.LastUpdated = {(this.LastUpdated == null ? "null" : this.LastUpdated)}");
+            toStringOutput.Add($"this.UserId = {this.UserId ?? "null"}");
+            toStringOutput.Add($"this.EmaId = {this.EmaId ?? "null"}");
+            toStringOutput.Add($"this.EvseId = {this.EvseId ?? "null"}");
+            toStringOutput.Add($"this.LastUpdated = {this.LastUpdated ?? "null"}");
             toStringOutput.Add($"this.StartedAt = {(this.StartedAt == null ? "null" : this.StartedAt.ToString())}");
             toStringOutput.Add($"this.StoppedAt = {(this.StoppedAt == null ? "null" : this.StoppedAt.ToString())}");
             toStringOutput.Add($"this.SessionState = {(this.SessionState == null ? "null" : this.SessionState.ToString())}");

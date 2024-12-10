@@ -1,16 +1,15 @@
 // <copyright file="CompatibilityFactory.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using APIMatic.Core.Types.Sdk;
+using APIMatic.Core.Utilities;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Http.Request;
+using ShellEV.Standard.Http.Response;
 
 namespace ShellEV.Standard.Utilities
 {
-    using APIMatic.Core.Types.Sdk;
-    using APIMatic.Core.Utilities;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Http.Request;
-    using ShellEV.Standard.Http.Response;
-
     internal class CompatibilityFactory : ICompatibilityFactory<HttpRequest, HttpResponse, HttpContext, ApiException>
     {
         public ApiException CreateApiException(string reason, CoreContext<CoreRequest, CoreResponse> context) =>

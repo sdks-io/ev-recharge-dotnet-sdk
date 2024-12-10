@@ -1,28 +1,28 @@
 // <copyright file="LocationsController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using APIMatic.Core;
+using APIMatic.Core.Types;
+using APIMatic.Core.Utilities;
+using APIMatic.Core.Utilities.Date.Xml;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Utilities;
+using System.Net.Http;
+
 namespace ShellEV.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using APIMatic.Core;
-    using APIMatic.Core.Types;
-    using APIMatic.Core.Utilities;
-    using APIMatic.Core.Utilities.Date.Xml;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Utilities;
-    using System.Net.Http;
-
     /// <summary>
     /// LocationsController.
     /// </summary>
@@ -115,7 +115,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.Response>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/locations/v1/ev")
+                  .Setup(HttpMethod.Get, "/locations")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
@@ -175,7 +175,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.Response>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/locations/v1/ev/{id}")
+                  .Setup(HttpMethod.Get, "/locations/{id}")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
@@ -227,10 +227,10 @@ namespace ShellEV.Standard.Controllers
                 string evseId = null,
                 string evseExternalId = null,
                 string operatorName = null,
-                Models.NearbyLocationsEvseStatusEnum? evseStatus = null,
+                Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
                 Models.NearbyLocationsConnectorTypesEnum? connectorTypes = null,
                 double? connectorMinPower = null,
-                Models.NearbyLocationsAuthorizationMethodsEnum? authorizationMethods = null,
+                Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
                 bool? withOperatorName = null,
                 bool? withMaxPower = null,
                 List<string> country = null,
@@ -274,10 +274,10 @@ namespace ShellEV.Standard.Controllers
                 string evseId = null,
                 string evseExternalId = null,
                 string operatorName = null,
-                Models.NearbyLocationsEvseStatusEnum? evseStatus = null,
+                Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
                 Models.NearbyLocationsConnectorTypesEnum? connectorTypes = null,
                 double? connectorMinPower = null,
-                Models.NearbyLocationsAuthorizationMethodsEnum? authorizationMethods = null,
+                Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
                 bool? withOperatorName = null,
                 bool? withMaxPower = null,
                 List<string> country = null,
@@ -285,13 +285,13 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.Response>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/locations/v1/ev/nearby")
+                  .Setup(HttpMethod.Get, "/locations/nearby")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))
                       .Query(_query => _query.Setup("latitude", latitude))
                       .Query(_query => _query.Setup("longitude", longitude))
-                      .Query(_query => _query.Setup("limit", (limit != null) ? limit : 25))
+                      .Query(_query => _query.Setup("limit", limit ?? 25))
                       .Query(_query => _query.Setup("locationExternalId", locationExternalId))
                       .Query(_query => _query.Setup("evseId", evseId))
                       .Query(_query => _query.Setup("evseExternalId", evseExternalId))
@@ -346,10 +346,10 @@ namespace ShellEV.Standard.Controllers
                 double east,
                 double north,
                 string zoom,
-                Models.LocationsMarkersEvseStatusEnum? evseStatus = null,
-                Models.LocationsMarkersConnectorTypesEnum? connectorTypes = null,
+                Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
+                Models.GetEVLocationsConnectorTypesEnum? connectorTypes = null,
                 double? connectorMinPower = null,
-                Models.LocationsMarkersAuthorizationMethodsEnum? authorizationMethods = null,
+                Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
                 bool? withOperatorName = null,
                 bool? withMaxPower = null,
                 string locationExternalId = null,
@@ -394,10 +394,10 @@ namespace ShellEV.Standard.Controllers
                 double east,
                 double north,
                 string zoom,
-                Models.LocationsMarkersEvseStatusEnum? evseStatus = null,
-                Models.LocationsMarkersConnectorTypesEnum? connectorTypes = null,
+                Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
+                Models.GetEVLocationsConnectorTypesEnum? connectorTypes = null,
                 double? connectorMinPower = null,
-                Models.LocationsMarkersAuthorizationMethodsEnum? authorizationMethods = null,
+                Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
                 bool? withOperatorName = null,
                 bool? withMaxPower = null,
                 string locationExternalId = null,
@@ -409,7 +409,7 @@ namespace ShellEV.Standard.Controllers
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.SingleLocationMarkerResponse>()
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Get, "/locations/v1/ev/markers")
+                  .Setup(HttpMethod.Get, "/locations/markers")
                   .WithAuth("BearerAuth")
                   .Parameters(_parameters => _parameters
                       .Header(_header => _header.Setup("RequestId", requestId))

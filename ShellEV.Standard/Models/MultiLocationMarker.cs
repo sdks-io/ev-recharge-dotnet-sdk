@@ -1,21 +1,21 @@
 // <copyright file="MultiLocationMarker.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// MultiLocationMarker.
     /// </summary>
@@ -106,46 +106,46 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"MultiLocationMarker : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is MultiLocationMarker other &&                ((this.MarkerType == null && other.MarkerType == null) || (this.MarkerType?.Equals(other.MarkerType) == true)) &&
-                ((this.UniqueKey == null && other.UniqueKey == null) || (this.UniqueKey?.Equals(other.UniqueKey) == true)) &&
-                ((this.Coordinates == null && other.Coordinates == null) || (this.Coordinates?.Equals(other.Coordinates) == true)) &&
-                ((this.LocationCount == null && other.LocationCount == null) || (this.LocationCount?.Equals(other.LocationCount) == true)) &&
-                ((this.EvseCount == null && other.EvseCount == null) || (this.EvseCount?.Equals(other.EvseCount) == true)) &&
-                ((this.MaxPower == null && other.MaxPower == null) || (this.MaxPower?.Equals(other.MaxPower) == true)) &&
-                ((this.GeoHash == null && other.GeoHash == null) || (this.GeoHash?.Equals(other.GeoHash) == true));
+            return obj is MultiLocationMarker other &&
+                (this.MarkerType == null && other.MarkerType == null ||
+                 this.MarkerType?.Equals(other.MarkerType) == true) &&
+                (this.UniqueKey == null && other.UniqueKey == null ||
+                 this.UniqueKey?.Equals(other.UniqueKey) == true) &&
+                (this.Coordinates == null && other.Coordinates == null ||
+                 this.Coordinates?.Equals(other.Coordinates) == true) &&
+                (this.LocationCount == null && other.LocationCount == null ||
+                 this.LocationCount?.Equals(other.LocationCount) == true) &&
+                (this.EvseCount == null && other.EvseCount == null ||
+                 this.EvseCount?.Equals(other.EvseCount) == true) &&
+                (this.MaxPower == null && other.MaxPower == null ||
+                 this.MaxPower?.Equals(other.MaxPower) == true) &&
+                (this.GeoHash == null && other.GeoHash == null ||
+                 this.GeoHash?.Equals(other.GeoHash) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MarkerType = {(this.MarkerType == null ? "null" : this.MarkerType)}");
-            toStringOutput.Add($"this.UniqueKey = {(this.UniqueKey == null ? "null" : this.UniqueKey)}");
+            toStringOutput.Add($"this.MarkerType = {this.MarkerType ?? "null"}");
+            toStringOutput.Add($"this.UniqueKey = {this.UniqueKey ?? "null"}");
             toStringOutput.Add($"this.Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
             toStringOutput.Add($"this.LocationCount = {(this.LocationCount == null ? "null" : this.LocationCount.ToString())}");
             toStringOutput.Add($"this.EvseCount = {(this.EvseCount == null ? "null" : this.EvseCount.ToString())}");
             toStringOutput.Add($"this.MaxPower = {(this.MaxPower == null ? "null" : this.MaxPower.ToString())}");
-            toStringOutput.Add($"this.GeoHash = {(this.GeoHash == null ? "null" : this.GeoHash)}");
+            toStringOutput.Add($"this.GeoHash = {this.GeoHash ?? "null"}");
         }
     }
 }

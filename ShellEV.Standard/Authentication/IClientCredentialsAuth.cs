@@ -1,11 +1,11 @@
 // <copyright file="IClientCredentialsAuth.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
 namespace ShellEV.Standard.Authentication
 {
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-
     public interface IClientCredentialsAuth
     {
         /// <summary>

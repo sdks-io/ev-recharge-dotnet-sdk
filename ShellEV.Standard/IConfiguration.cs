@@ -1,13 +1,13 @@
 // <copyright file="IConfiguration.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Net;
+using ShellEV.Standard.Authentication;
+using ShellEV.Standard.Models;
+
 namespace ShellEV.Standard
 {
-    using System;
-    using System.Net;
-    using ShellEV.Standard.Authentication;
-    using ShellEV.Standard.Models;
-
     /// <summary>
     /// IConfiguration.
     /// </summary>

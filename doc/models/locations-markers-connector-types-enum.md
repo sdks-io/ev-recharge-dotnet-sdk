@@ -1,6 +1,8 @@
 
 # Locations Markers Connector Types Enum
 
+Filter by Locations that have Connectors with the set of Connector Types
+
 ## Enumeration
 
 `LocationsMarkersConnectorTypesEnum`

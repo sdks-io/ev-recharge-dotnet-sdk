@@ -7,12 +7,12 @@ The following parameters are configurable for the API Client:
 |  --- | --- | --- |
 | `Environment` | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
 | `Timeout` | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
-| `ClientCredentialsAuth` | [`ClientCredentialsAuth`]($a/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
+| `ClientCredentialsAuth` | [`ClientCredentialsAuth`](auth/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
 
 The API client can be initialized as follows:
 
 ```csharp
-ShellEV.Standard.ShellEVClient client = new ShellEV.Standard.ShellEVClient.Builder()
+ShellEVClient client = new ShellEVClient.Builder()
     .ClientCredentialsAuth(
         new ClientCredentialsAuthModel.Builder(
             "OAuthClientId",
@@ -42,7 +42,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | HttpClientConfiguration | Gets the configuration of the Http Client associated with this client. | [`IHttpClientConfiguration`](http-client-configuration.md) |
 | Timeout | Http client timeout. | `TimeSpan` |
 | Environment | Current API environment. | `Environment` |
-| ClientCredentialsAuth | Gets the credentials to use with ClientCredentialsAuth. | [`IClientCredentialsAuth`]($a/oauth-2-client-credentials-grant.md) |
+| ClientCredentialsAuth | Gets the credentials to use with ClientCredentialsAuth. | [`IClientCredentialsAuth`](auth/oauth-2-client-credentials-grant.md) |
 
 ### Methods
 

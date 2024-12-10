@@ -60,8 +60,8 @@ GetEVLocationsAsync(
 | `evseId` | `string` | Query, Optional | optional Standard EVSE (Electric Vehicle Supply Equipment) Id identifier (ISO-IEC-15118) |
 | `locationExternalId` | `string` | Query, Optional | Filter by Locations with the given externalId. (Unique Location externalID provided by Shell Recharge) |
 | `evseExternalId` | `string` | Query, Optional | Filter by Locations that have an Evse with the given External Id. (Unique individual EVSE externalID provided by Shell Recharge) |
-| `pageNumber` | `int?` | Query, Optional | Restrict the response list by providing a specific set of page Number. Set perPage parameter also when page Number is used. |
-| `perPage` | `int?` | Query, Optional | Restrict the number of sites in response per page. |
+| `pageNumber` | `int?` | Query, Optional | Restrict the response list by providing a specific set of page Number. Set perPage parameter also when page Number is used.<br>**Constraints**: `>= 1` |
+| `perPage` | `int?` | Query, Optional | Restrict the number of sites in response per page.<br>**Constraints**: `<= 500` |
 | `updatedSince` | `string` | Query, Optional | ZonedDateTime as string |
 | `country` | `List<string>` | Query, Optional | Filter by Locations that are at least in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
 | `excludeCountry` | `List<string>` | Query, Optional | Filter by Locations that are not in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
@@ -203,10 +203,10 @@ NearbyLocationsAsync(
     string evseId = null,
     string evseExternalId = null,
     string operatorName = null,
-    Models.NearbyLocationsEvseStatusEnum? evseStatus = null,
+    Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
     Models.NearbyLocationsConnectorTypesEnum? connectorTypes = null,
     double? connectorMinPower = null,
-    Models.NearbyLocationsAuthorizationMethodsEnum? authorizationMethods = null,
+    Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
     bool? withOperatorName = null,
     bool? withMaxPower = null,
     List<string> country = null,
@@ -218,17 +218,17 @@ NearbyLocationsAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `latitude` | `double` | Query, Required | Latitude to get Shell Recharge Locations nearby |
-| `longitude` | `double` | Query, Required | Longitude to get Shell Recharge Locations nearby |
-| `limit` | `double?` | Query, Optional | Maximum number of Locations to retrieve |
+| `latitude` | `double` | Query, Required | Latitude to get Shell Recharge Locations nearby<br>**Constraints**: `>= -90`, `<= 90` |
+| `longitude` | `double` | Query, Required | Longitude to get Shell Recharge Locations nearby<br>**Constraints**: `>= -180`, `<= 180` |
+| `limit` | `double?` | Query, Optional | Maximum number of Locations to retrieve<br>**Default**: `25`<br>**Constraints**: `<= 100` |
 | `locationExternalId` | `string` | Query, Optional | Filter by Locations with the given externalId Identifier as given by the Shell Recharge Operator, unique for that Operator |
 | `evseId` | `string` | Query, Optional | Filter by Locations that have an Evse with the given Evse Id |
 | `evseExternalId` | `string` | Query, Optional | Filter by Locations that have an Evse with the given External Id Identifier of the Evse as given by the Operator, unique for that Operator |
 | `operatorName` | `string` | Query, Optional | Filter by Locations that have the given operator |
-| `evseStatus` | [`NearbyLocationsEvseStatusEnum?`](../../doc/models/nearby-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
+| `evseStatus` | [`GetEVLocationsEvseStatusEnum?`](../../doc/models/get-ev-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
 | `connectorTypes` | [`NearbyLocationsConnectorTypesEnum?`](../../doc/models/nearby-locations-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with these Connector Types |
 | `connectorMinPower` | `double?` | Query, Optional | Filter by Locations that have a Connector with at least this power output (in kW) |
-| `authorizationMethods` | [`NearbyLocationsAuthorizationMethodsEnum?`](../../doc/models/nearby-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
+| `authorizationMethods` | [`GetEVLocationsAuthorizationMethodsEnum?`](../../doc/models/get-ev-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
 | `withOperatorName` | `bool?` | Query, Optional | Return operator name in marker object (only for marker type Single ChargePoint) |
 | `withMaxPower` | `bool?` | Query, Optional | Return maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `country` | `List<string>` | Query, Optional | Filter by Locations that are at least in one of the given countries (specified using ISO 3166-1 alpha-3 codes) |
@@ -313,10 +313,10 @@ LocationsMarkersAsync(
     double east,
     double north,
     string zoom,
-    Models.LocationsMarkersEvseStatusEnum? evseStatus = null,
-    Models.LocationsMarkersConnectorTypesEnum? connectorTypes = null,
+    Models.GetEVLocationsEvseStatusEnum? evseStatus = null,
+    Models.GetEVLocationsConnectorTypesEnum? connectorTypes = null,
     double? connectorMinPower = null,
-    Models.LocationsMarkersAuthorizationMethodsEnum? authorizationMethods = null,
+    Models.GetEVLocationsAuthorizationMethodsEnum? authorizationMethods = null,
     bool? withOperatorName = null,
     bool? withMaxPower = null,
     string locationExternalId = null,
@@ -332,15 +332,15 @@ LocationsMarkersAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `west` | `double` | Query, Required | Longitude of the western bound to get the Shell Recharge Locations |
-| `south` | `double` | Query, Required | Latitude of the southern bound to get the Shell Recharge Locations |
-| `east` | `double` | Query, Required | Longitude of the eastern bound to get the Shell Recharge Locations |
-| `north` | `double` | Query, Required | Latitude of the northern bound to get the Shell Recharge Locations |
+| `west` | `double` | Query, Required | Longitude of the western bound to get the Shell Recharge Locations<br>**Constraints**: `>= -180`, `<= 180` |
+| `south` | `double` | Query, Required | Latitude of the southern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -90`, `<= 90` |
+| `east` | `double` | Query, Required | Longitude of the eastern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -180`, `<= 180` |
+| `north` | `double` | Query, Required | Latitude of the northern bound to get the Shell Recharge Locations<br>**Constraints**: `>= -90`, `<= 90` |
 | `zoom` | `string` | Query, Required | Zoom level to show ex: (1: World, 5: Landmass/continent, 10: City, 15: Streets, 20: Buildings) |
-| `evseStatus` | [`LocationsMarkersEvseStatusEnum?`](../../doc/models/locations-markers-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
-| `connectorTypes` | [`LocationsMarkersConnectorTypesEnum?`](../../doc/models/locations-markers-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with the set of Connector Types |
+| `evseStatus` | [`GetEVLocationsEvseStatusEnum?`](../../doc/models/get-ev-locations-evse-status-enum.md) | Query, Optional | Filter by Locations that have the given status |
+| `connectorTypes` | [`GetEVLocationsConnectorTypesEnum?`](../../doc/models/get-ev-locations-connector-types-enum.md) | Query, Optional | Filter by Locations that have Connectors with the set of Connector Types |
 | `connectorMinPower` | `double?` | Query, Optional | Filter by Locations that have a Connector with at least this power output (in kW) |
-| `authorizationMethods` | [`LocationsMarkersAuthorizationMethodsEnum?`](../../doc/models/locations-markers-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
+| `authorizationMethods` | [`GetEVLocationsAuthorizationMethodsEnum?`](../../doc/models/get-ev-locations-authorization-methods-enum.md) | Query, Optional | Filter by Locations that support the given Authorization Methods |
 | `withOperatorName` | `bool?` | Query, Optional | Return operator name in marker object (only for marker type SingleChargePoint) |
 | `withMaxPower` | `bool?` | Query, Optional | Return maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `locationExternalId` | `string` | Query, Optional | Filter by Locations with the given externalId. (Unique Location externalID provided by Shell Recharge) |

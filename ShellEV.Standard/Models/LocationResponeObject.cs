@@ -1,21 +1,21 @@
 // <copyright file="LocationResponeObject.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// LocationResponeObject.
     /// </summary>
@@ -138,37 +138,41 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"LocationResponeObject : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is LocationResponeObject other &&                ((this.Uid == null && other.Uid == null) || (this.Uid?.Equals(other.Uid) == true)) &&
-                ((this.ExternalId == null && other.ExternalId == null) || (this.ExternalId?.Equals(other.ExternalId) == true)) &&
-                ((this.Coordinates == null && other.Coordinates == null) || (this.Coordinates?.Equals(other.Coordinates) == true)) &&
-                ((this.OperatorName == null && other.OperatorName == null) || (this.OperatorName?.Equals(other.OperatorName) == true)) &&
-                ((this.Address == null && other.Address == null) || (this.Address?.Equals(other.Address) == true)) &&
-                ((this.Accessibility == null && other.Accessibility == null) || (this.Accessibility?.Equals(other.Accessibility) == true)) &&
-                ((this.Evses == null && other.Evses == null) || (this.Evses?.Equals(other.Evses) == true)) &&
-                ((this.OpeningHours == null && other.OpeningHours == null) || (this.OpeningHours?.Equals(other.OpeningHours) == true)) &&
-                ((this.Updated == null && other.Updated == null) || (this.Updated?.Equals(other.Updated) == true)) &&
-                ((this.OperatorComment == null && other.OperatorComment == null) || (this.OperatorComment?.Equals(other.OperatorComment) == true)) &&
-                ((this.LocationType == null && other.LocationType == null) || (this.LocationType?.Equals(other.LocationType) == true));
+            return obj is LocationResponeObject other &&
+                (this.Uid == null && other.Uid == null ||
+                 this.Uid?.Equals(other.Uid) == true) &&
+                (this.ExternalId == null && other.ExternalId == null ||
+                 this.ExternalId?.Equals(other.ExternalId) == true) &&
+                (this.Coordinates == null && other.Coordinates == null ||
+                 this.Coordinates?.Equals(other.Coordinates) == true) &&
+                (this.OperatorName == null && other.OperatorName == null ||
+                 this.OperatorName?.Equals(other.OperatorName) == true) &&
+                (this.Address == null && other.Address == null ||
+                 this.Address?.Equals(other.Address) == true) &&
+                (this.Accessibility == null && other.Accessibility == null ||
+                 this.Accessibility?.Equals(other.Accessibility) == true) &&
+                (this.Evses == null && other.Evses == null ||
+                 this.Evses?.Equals(other.Evses) == true) &&
+                (this.OpeningHours == null && other.OpeningHours == null ||
+                 this.OpeningHours?.Equals(other.OpeningHours) == true) &&
+                (this.Updated == null && other.Updated == null ||
+                 this.Updated?.Equals(other.Updated) == true) &&
+                (this.OperatorComment == null && other.OperatorComment == null ||
+                 this.OperatorComment?.Equals(other.OperatorComment) == true) &&
+                (this.LocationType == null && other.LocationType == null ||
+                 this.LocationType?.Equals(other.LocationType) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -176,16 +180,16 @@ namespace ShellEV.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
-            toStringOutput.Add($"this.ExternalId = {(this.ExternalId == null ? "null" : this.ExternalId)}");
+            toStringOutput.Add($"this.ExternalId = {this.ExternalId ?? "null"}");
             toStringOutput.Add($"this.Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
-            toStringOutput.Add($"this.OperatorName = {(this.OperatorName == null ? "null" : this.OperatorName)}");
+            toStringOutput.Add($"this.OperatorName = {this.OperatorName ?? "null"}");
             toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
             toStringOutput.Add($"this.Accessibility = {(this.Accessibility == null ? "null" : this.Accessibility.ToString())}");
             toStringOutput.Add($"this.Evses = {(this.Evses == null ? "null" : $"[{string.Join(", ", this.Evses)} ]")}");
             toStringOutput.Add($"this.OpeningHours = {(this.OpeningHours == null ? "null" : $"[{string.Join(", ", this.OpeningHours)} ]")}");
-            toStringOutput.Add($"this.Updated = {(this.Updated == null ? "null" : this.Updated)}");
-            toStringOutput.Add($"this.OperatorComment = {(this.OperatorComment == null ? "null" : this.OperatorComment)}");
-            toStringOutput.Add($"this.LocationType = {(this.LocationType == null ? "null" : this.LocationType)}");
+            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"this.OperatorComment = {this.OperatorComment ?? "null"}");
+            toStringOutput.Add($"this.LocationType = {this.LocationType ?? "null"}");
         }
     }
 }

@@ -1,6 +1,8 @@
 
 # Nearby Locations Connector Types Enum
 
+Filter by Locations that have Connectors with these Connector Types
+
 ## Enumeration
 
 `NearbyLocationsConnectorTypesEnum`

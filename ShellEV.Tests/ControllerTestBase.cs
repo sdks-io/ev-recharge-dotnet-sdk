@@ -1,22 +1,21 @@
 // <copyright file="ControllerTestBase.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using ShellEV.Standard;
+using ShellEV.Standard.Authentication;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Models;
+using ShellEV.Standard.Models.Containers;
+
 namespace ShellEV.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Types;
-    using NUnit.Framework;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Authentication;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Models;
-    using ShellEV.Standard.Models.Containers;
-
     /// <summary>
     /// ControllerTestBase Class.
     /// </summary>
@@ -31,7 +30,7 @@ namespace ShellEV.Tests
         /// <summary>
         /// Gets HttpCallBackHandler.
         /// </summary>
-        internal HttpCallBack HttpCallBack { get; private set; } = new HttpCallBack();
+        internal HttpCallback HttpCallBack { get; private set; } = new HttpCallback();
 
         /// <summary>
         /// Gets ShellEVClient Client.
@@ -46,7 +45,7 @@ namespace ShellEV.Tests
         {
             ShellEVClient config = ShellEVClient.CreateFromEnvironment();
             this.Client = config.ToBuilder()
-                .HttpCallBack(HttpCallBack)
+                .HttpCallback(HttpCallBack)
                 .Build();
 
         }

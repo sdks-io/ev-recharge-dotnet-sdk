@@ -1,21 +1,21 @@
 // <copyright file="ClientCredentialsAuthManager.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using ShellEV.Standard.Controllers;
+using ShellEV.Standard.Models;
+using ShellEV.Standard.Utilities;
+using ShellEV.Standard.Exceptions;
+using APIMatic.Core.Authentication;
+using APIMatic.Core.Request;
+using APIMatic.Core;
+
 namespace ShellEV.Standard.Authentication
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using ShellEV.Standard.Controllers;
-    using ShellEV.Standard.Models;
-    using ShellEV.Standard.Utilities;
-    using ShellEV.Standard.Exceptions;
-    using APIMatic.Core.Authentication;
-    using APIMatic.Core.Request;
-    using APIMatic.Core;
-
     /// <summary>
     /// ClientCredentialsAuthManager Class.
     /// </summary>
@@ -328,19 +328,6 @@ namespace ShellEV.Standard.Authentication
                     OAuthOnTokenUpdate = this.oAuthOnTokenUpdate
                 };
             }
-        }
-    }
-    internal static class OAuthTokenExtensions
-    {
-        internal static bool IsTokenExpired(this OAuthToken token, TimeSpan? clockSkew)
-        {
-            if (token == null)
-            {
-                throw new InvalidOperationException("OAuth token is missing.");
-            }
-
-            if (token.Expiry == null) return true;
-            return token.Expiry < DateTimeOffset.UtcNow.Subtract(clockSkew ?? TimeSpan.Zero).ToUnixTimeSeconds();    
         }
     }
 }

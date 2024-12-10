@@ -1,6 +1,8 @@
 
 # Locations Markers Evse Status Enum
 
+Filter by Locations that have the given status
+
 ## Enumeration
 
 `LocationsMarkersEvseStatusEnum`

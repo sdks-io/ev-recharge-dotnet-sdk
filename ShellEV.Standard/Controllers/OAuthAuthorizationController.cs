@@ -1,28 +1,28 @@
 // <copyright file="OAuthAuthorizationController.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using APIMatic.Core;
+using APIMatic.Core.Types;
+using APIMatic.Core.Utilities;
+using APIMatic.Core.Utilities.Date.Xml;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Exceptions;
+using ShellEV.Standard.Http.Client;
+using ShellEV.Standard.Utilities;
+using System.Net.Http;
+
 namespace ShellEV.Standard.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using APIMatic.Core;
-    using APIMatic.Core.Types;
-    using APIMatic.Core.Utilities;
-    using APIMatic.Core.Utilities.Date.Xml;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Exceptions;
-    using ShellEV.Standard.Http.Client;
-    using ShellEV.Standard.Utilities;
-    using System.Net.Http;
-
     /// <summary>
     /// OAuthAuthorizationController.
     /// </summary>
@@ -60,8 +60,9 @@ namespace ShellEV.Standard.Controllers
                 Dictionary<string, object> fieldParameters = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.OAuthToken>()
+              .Server(Server.AccessTokenServer)
               .RequestBuilder(_requestBuilder => _requestBuilder
-                  .Setup(HttpMethod.Post, "/v1/oauth/token")
+                  .Setup(HttpMethod.Post, "/token")
                   .Parameters(_parameters => _parameters
                       .AdditionalForms(_additionalForms => _additionalForms.Setup(fieldParameters))
                       .Form(_form => _form.Setup("grant_type", "client_credentials"))

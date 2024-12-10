@@ -1,21 +1,21 @@
 // <copyright file="EvseVO.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// EvseVO.
     /// </summary>
@@ -120,35 +120,37 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"EvseVO : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is EvseVO other &&                ((this.Uid == null && other.Uid == null) || (this.Uid?.Equals(other.Uid) == true)) &&
-                ((this.ExternalId == null && other.ExternalId == null) || (this.ExternalId?.Equals(other.ExternalId) == true)) &&
-                ((this.EvseId == null && other.EvseId == null) || (this.EvseId?.Equals(other.EvseId) == true)) &&
-                ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
-                ((this.Connectors == null && other.Connectors == null) || (this.Connectors?.Equals(other.Connectors) == true)) &&
-                ((this.AuthorizationMethods == null && other.AuthorizationMethods == null) || (this.AuthorizationMethods?.Equals(other.AuthorizationMethods) == true)) &&
-                ((this.Updated == null && other.Updated == null) || (this.Updated?.Equals(other.Updated) == true)) &&
-                ((this.Deleted == null && other.Deleted == null) || (this.Deleted?.Equals(other.Deleted) == true)) &&
-                ((this.PhysicalReference == null && other.PhysicalReference == null) || (this.PhysicalReference?.Equals(other.PhysicalReference) == true));
+            return obj is EvseVO other &&
+                (this.Uid == null && other.Uid == null ||
+                 this.Uid?.Equals(other.Uid) == true) &&
+                (this.ExternalId == null && other.ExternalId == null ||
+                 this.ExternalId?.Equals(other.ExternalId) == true) &&
+                (this.EvseId == null && other.EvseId == null ||
+                 this.EvseId?.Equals(other.EvseId) == true) &&
+                (this.Status == null && other.Status == null ||
+                 this.Status?.Equals(other.Status) == true) &&
+                (this.Connectors == null && other.Connectors == null ||
+                 this.Connectors?.Equals(other.Connectors) == true) &&
+                (this.AuthorizationMethods == null && other.AuthorizationMethods == null ||
+                 this.AuthorizationMethods?.Equals(other.AuthorizationMethods) == true) &&
+                (this.Updated == null && other.Updated == null ||
+                 this.Updated?.Equals(other.Updated) == true) &&
+                (this.Deleted == null && other.Deleted == null ||
+                 this.Deleted?.Equals(other.Deleted) == true) &&
+                (this.PhysicalReference == null && other.PhysicalReference == null ||
+                 this.PhysicalReference?.Equals(other.PhysicalReference) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -156,14 +158,14 @@ namespace ShellEV.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
-            toStringOutput.Add($"this.ExternalId = {(this.ExternalId == null ? "null" : this.ExternalId)}");
-            toStringOutput.Add($"this.EvseId = {(this.EvseId == null ? "null" : this.EvseId)}");
+            toStringOutput.Add($"this.ExternalId = {this.ExternalId ?? "null"}");
+            toStringOutput.Add($"this.EvseId = {this.EvseId ?? "null"}");
             toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status.ToString())}");
             toStringOutput.Add($"this.Connectors = {(this.Connectors == null ? "null" : $"[{string.Join(", ", this.Connectors)} ]")}");
             toStringOutput.Add($"this.AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : this.AuthorizationMethods.ToString())}");
-            toStringOutput.Add($"this.Updated = {(this.Updated == null ? "null" : this.Updated)}");
-            toStringOutput.Add($"this.Deleted = {(this.Deleted == null ? "null" : this.Deleted)}");
-            toStringOutput.Add($"this.PhysicalReference = {(this.PhysicalReference == null ? "null" : this.PhysicalReference)}");
+            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"this.Deleted = {this.Deleted ?? "null"}");
+            toStringOutput.Add($"this.PhysicalReference = {this.PhysicalReference ?? "null"}");
         }
     }
 }

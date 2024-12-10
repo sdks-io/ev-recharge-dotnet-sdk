@@ -1,21 +1,21 @@
 // <copyright file="OpeningHoursObject.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using APIMatic.Core.Utilities.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ShellEV.Standard;
+using ShellEV.Standard.Utilities;
+
 namespace ShellEV.Standard.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using APIMatic.Core.Utilities.Converters;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using ShellEV.Standard;
-    using ShellEV.Standard.Utilities;
-
     /// <summary>
     /// OpeningHoursObject.
     /// </summary>
@@ -45,7 +45,7 @@ namespace ShellEV.Standard.Models
         }
 
         /// <summary>
-        /// 3 letter day of the week
+        /// Gets or sets WeekDay.
         /// </summary>
         [JsonProperty("weekDay", NullValueHandling = NullValueHandling.Ignore)]
         public Models.OpeningHoursObjectWeekDayEnum? WeekDay { get; set; }
@@ -66,29 +66,25 @@ namespace ShellEV.Standard.Models
         public override string ToString()
         {
             var toStringOutput = new List<string>();
-
             this.ToString(toStringOutput);
-
             return $"OpeningHoursObject : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
 
-            if (obj == this)
-            {
-                return true;
-            }
-            return obj is OpeningHoursObject other &&                ((this.WeekDay == null && other.WeekDay == null) || (this.WeekDay?.Equals(other.WeekDay) == true)) &&
-                ((this.StartTime == null && other.StartTime == null) || (this.StartTime?.Equals(other.StartTime) == true)) &&
-                ((this.EndTime == null && other.EndTime == null) || (this.EndTime?.Equals(other.EndTime) == true));
+            return obj is OpeningHoursObject other &&
+                (this.WeekDay == null && other.WeekDay == null ||
+                 this.WeekDay?.Equals(other.WeekDay) == true) &&
+                (this.StartTime == null && other.StartTime == null ||
+                 this.StartTime?.Equals(other.StartTime) == true) &&
+                (this.EndTime == null && other.EndTime == null ||
+                 this.EndTime?.Equals(other.EndTime) == true);
         }
-        
+
         /// <summary>
         /// ToString overload.
         /// </summary>
@@ -96,8 +92,8 @@ namespace ShellEV.Standard.Models
         protected void ToString(List<string> toStringOutput)
         {
             toStringOutput.Add($"this.WeekDay = {(this.WeekDay == null ? "null" : this.WeekDay.ToString())}");
-            toStringOutput.Add($"this.StartTime = {(this.StartTime == null ? "null" : this.StartTime)}");
-            toStringOutput.Add($"this.EndTime = {(this.EndTime == null ? "null" : this.EndTime)}");
+            toStringOutput.Add($"this.StartTime = {this.StartTime ?? "null"}");
+            toStringOutput.Add($"this.EndTime = {this.EndTime ?? "null"}");
         }
     }
 }

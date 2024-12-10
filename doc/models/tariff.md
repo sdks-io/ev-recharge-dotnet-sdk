@@ -1,11 +1,9 @@
 
-# Tariff VO
-
-Tariff details for charging on this Connector
+# Tariff
 
 ## Structure
 
-`TariffVO`
+`Tariff`
 
 ## Fields
 

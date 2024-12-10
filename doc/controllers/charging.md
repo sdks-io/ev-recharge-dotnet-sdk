@@ -104,7 +104,7 @@ StopAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id |
+| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 
 ## Response Type
 
@@ -165,7 +165,7 @@ GetChargeSessionRetrieveAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id |
+| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 
 ## Response Type
 
@@ -240,7 +240,7 @@ ActiveAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID) |
+| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
 
 ## Response Type
 

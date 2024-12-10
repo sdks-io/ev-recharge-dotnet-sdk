@@ -1,6 +1,7 @@
 // <copyright file="Server.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
+
 namespace ShellEV.Standard
 {
     /// <summary>
@@ -12,5 +13,10 @@ namespace ShellEV.Standard
         /// Default.
         /// </summary>
         Default,
+
+        /// <summary>
+        /// AccessTokenServer.
+        /// </summary>
+        AccessTokenServer,
     }
 }
