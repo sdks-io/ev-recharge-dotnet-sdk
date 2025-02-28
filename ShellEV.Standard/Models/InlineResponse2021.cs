@@ -78,8 +78,8 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.RequestId = {this.RequestId}");
-            toStringOutput.Add($"this.Status = {this.Status}");
+            toStringOutput.Add($"RequestId = {this.RequestId}");
+            toStringOutput.Add($"Status = {this.Status}");
         }
     }
 }

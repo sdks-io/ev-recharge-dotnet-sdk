@@ -92,14 +92,6 @@ namespace ShellEV.Standard.Models
         public string RefreshToken { get; set; }
 
         /// <inheritdoc/>
-        public override string ToString()
-        {
-            var toStringOutput = new List<string>();
-            this.ToString(toStringOutput);
-            return $"OAuthToken : ({string.Join(", ", toStringOutput)})";
-        }
-
-        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
             if (obj is null) return false;
@@ -118,20 +110,6 @@ namespace ShellEV.Standard.Models
                  this.Expiry?.Equals(other.Expiry) == true) &&
                 (this.RefreshToken == null && other.RefreshToken == null ||
                  this.RefreshToken?.Equals(other.RefreshToken) == true);
-        }
-
-        /// <summary>
-        /// ToString overload.
-        /// </summary>
-        /// <param name="toStringOutput">List of strings.</param>
-        protected void ToString(List<string> toStringOutput)
-        {
-            toStringOutput.Add($"this.AccessToken = {this.AccessToken ?? "null"}");
-            toStringOutput.Add($"this.TokenType = {this.TokenType ?? "null"}");
-            toStringOutput.Add($"this.ExpiresIn = {(this.ExpiresIn == null ? "null" : this.ExpiresIn.ToString())}");
-            toStringOutput.Add($"this.Scope = {this.Scope ?? "null"}");
-            toStringOutput.Add($"this.Expiry = {(this.Expiry == null ? "null" : this.Expiry.ToString())}");
-            toStringOutput.Add($"this.RefreshToken = {this.RefreshToken ?? "null"}");
         }
     }
 }

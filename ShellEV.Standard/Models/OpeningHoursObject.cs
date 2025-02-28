@@ -91,9 +91,9 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.WeekDay = {(this.WeekDay == null ? "null" : this.WeekDay.ToString())}");
-            toStringOutput.Add($"this.StartTime = {this.StartTime ?? "null"}");
-            toStringOutput.Add($"this.EndTime = {this.EndTime ?? "null"}");
+            toStringOutput.Add($"WeekDay = {(this.WeekDay == null ? "null" : this.WeekDay.ToString())}");
+            toStringOutput.Add($"StartTime = {this.StartTime ?? "null"}");
+            toStringOutput.Add($"EndTime = {this.EndTime ?? "null"}");
         }
     }
 }

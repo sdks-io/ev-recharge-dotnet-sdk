@@ -135,13 +135,13 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StartFee = {(this.StartFee == null ? "null" : this.StartFee.ToString())}");
-            toStringOutput.Add($"this.PerMinute = {(this.PerMinute == null ? "null" : this.PerMinute.ToString())}");
-            toStringOutput.Add($"this.PerKWh = {(this.PerKWh == null ? "null" : this.PerKWh.ToString())}");
-            toStringOutput.Add($"this.Currency = {this.Currency ?? "null"}");
-            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
-            toStringOutput.Add($"this.UpdatedBy = {(this.UpdatedBy == null ? "null" : this.UpdatedBy.ToString())}");
-            toStringOutput.Add($"this.Structure = {this.Structure ?? "null"}");
+            toStringOutput.Add($"StartFee = {(this.StartFee == null ? "null" : this.StartFee.ToString())}");
+            toStringOutput.Add($"PerMinute = {(this.PerMinute == null ? "null" : this.PerMinute.ToString())}");
+            toStringOutput.Add($"PerKWh = {(this.PerKWh == null ? "null" : this.PerKWh.ToString())}");
+            toStringOutput.Add($"Currency = {this.Currency ?? "null"}");
+            toStringOutput.Add($"Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"UpdatedBy = {(this.UpdatedBy == null ? "null" : this.UpdatedBy.ToString())}");
+            toStringOutput.Add($"Structure = {this.Structure ?? "null"}");
         }
     }
 }

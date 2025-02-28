@@ -179,17 +179,17 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
-            toStringOutput.Add($"this.ExternalId = {this.ExternalId ?? "null"}");
-            toStringOutput.Add($"this.Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
-            toStringOutput.Add($"this.OperatorName = {this.OperatorName ?? "null"}");
-            toStringOutput.Add($"this.Address = {(this.Address == null ? "null" : this.Address.ToString())}");
-            toStringOutput.Add($"this.Accessibility = {(this.Accessibility == null ? "null" : this.Accessibility.ToString())}");
-            toStringOutput.Add($"this.Evses = {(this.Evses == null ? "null" : $"[{string.Join(", ", this.Evses)} ]")}");
-            toStringOutput.Add($"this.OpeningHours = {(this.OpeningHours == null ? "null" : $"[{string.Join(", ", this.OpeningHours)} ]")}");
-            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
-            toStringOutput.Add($"this.OperatorComment = {this.OperatorComment ?? "null"}");
-            toStringOutput.Add($"this.LocationType = {this.LocationType ?? "null"}");
+            toStringOutput.Add($"Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
+            toStringOutput.Add($"ExternalId = {this.ExternalId ?? "null"}");
+            toStringOutput.Add($"Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
+            toStringOutput.Add($"OperatorName = {this.OperatorName ?? "null"}");
+            toStringOutput.Add($"Address = {(this.Address == null ? "null" : this.Address.ToString())}");
+            toStringOutput.Add($"Accessibility = {(this.Accessibility == null ? "null" : this.Accessibility.ToString())}");
+            toStringOutput.Add($"Evses = {(this.Evses == null ? "null" : $"[{string.Join(", ", this.Evses)} ]")}");
+            toStringOutput.Add($"OpeningHours = {(this.OpeningHours == null ? "null" : $"[{string.Join(", ", this.OpeningHours)} ]")}");
+            toStringOutput.Add($"Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"OperatorComment = {this.OperatorComment ?? "null"}");
+            toStringOutput.Add($"LocationType = {this.LocationType ?? "null"}");
         }
     }
 }

@@ -173,16 +173,16 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.MarkerType = {this.MarkerType ?? "null"}");
-            toStringOutput.Add($"this.UniqueKey = {this.UniqueKey ?? "null"}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status.ToString())}");
-            toStringOutput.Add($"this.Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
-            toStringOutput.Add($"this.EvseCount = {(this.EvseCount == null ? "null" : this.EvseCount.ToString())}");
-            toStringOutput.Add($"this.MaxPower = {(this.MaxPower == null ? "null" : this.MaxPower.ToString())}");
-            toStringOutput.Add($"this.GeoHash = {this.GeoHash ?? "null"}");
-            toStringOutput.Add($"this.LocationUid = {(this.LocationUid == null ? "null" : this.LocationUid.ToString())}");
-            toStringOutput.Add($"this.AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : $"[{string.Join(", ", this.AuthorizationMethods)} ]")}");
-            toStringOutput.Add($"this.OperatorId = {this.OperatorId ?? "null"}");
+            toStringOutput.Add($"MarkerType = {this.MarkerType ?? "null"}");
+            toStringOutput.Add($"UniqueKey = {this.UniqueKey ?? "null"}");
+            toStringOutput.Add($"Status = {(this.Status == null ? "null" : this.Status.ToString())}");
+            toStringOutput.Add($"Coordinates = {(this.Coordinates == null ? "null" : this.Coordinates.ToString())}");
+            toStringOutput.Add($"EvseCount = {(this.EvseCount == null ? "null" : this.EvseCount.ToString())}");
+            toStringOutput.Add($"MaxPower = {(this.MaxPower == null ? "null" : this.MaxPower.ToString())}");
+            toStringOutput.Add($"GeoHash = {this.GeoHash ?? "null"}");
+            toStringOutput.Add($"LocationUid = {(this.LocationUid == null ? "null" : this.LocationUid.ToString())}");
+            toStringOutput.Add($"AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : $"[{string.Join(", ", this.AuthorizationMethods)} ]")}");
+            toStringOutput.Add($"OperatorId = {this.OperatorId ?? "null"}");
         }
     }
 }

@@ -92,8 +92,8 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.RequestId = {(this.RequestId == null ? "null" : this.RequestId.ToString())}");
-            toStringOutput.Add($"this.Status = {this.Status ?? "null"}");
+            toStringOutput.Add($"RequestId = {(this.RequestId == null ? "null" : this.RequestId.ToString())}");
+            toStringOutput.Add($"Status = {this.Status ?? "null"}");
             toStringOutput.Add($"Data = {(this.Data == null ? "null" : this.Data.ToString())}");
         }
     }

@@ -24,7 +24,7 @@ Documentation for accessing and setting credentials for BearerAuth.
 
 ### Client Initialization
 
-You must initialize the client with *OAuth 2.0 Client Credentials Grant* credentials as shown in the following code snippet. This will fetch the OAuth token automatically when any of the endpoints, requiring *OAuth 2.0 Client Credentials Grant* autentication, are called.
+You must initialize the client with *OAuth 2.0 Client Credentials Grant* credentials as shown in the following code snippet. This will fetch the OAuth token automatically when any of the endpoints, requiring *OAuth 2.0 Client Credentials Grant* authentication, are called.
 
 ```csharp
 ShellEVClient client = new ShellEVClient.Builder()
@@ -52,7 +52,7 @@ ShellEVClient client = new ShellEVClient.Builder()
             "OAuthClientId",
             "OAuthClientSecret"
         )
-        .oAuthOnTokenUpdate(token -> 
+        .OAuthOnTokenUpdate(token => 
         {
             // It will be triggered whenever the token gets updated
             SaveTokenToDatabase(token);
@@ -72,11 +72,11 @@ ShellEVClient client = new ShellEVClient.Builder()
             "OAuthClientId",
             "OAuthClientSecret"
         )
-        .oAuthTokenProvider(async (token, credentialsManager) =>
+        .OAuthTokenProvider(async (credentialsManager, token) =>
         {
             // Add the callback handler to provide a new OAuth token
-            // It will be triggered whenever the lastOAuthToken is undefined or expired
-            return LoadTokenFromDatabase() ?? await FetchTokenAsync()
+            // It will be triggered whenever the token is undefined or expired
+            return LoadTokenFromDatabase() ?? await credentialsManager.FetchTokenAsync();
         })
         .Build())
     .Build();

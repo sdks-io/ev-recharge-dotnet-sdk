@@ -5,6 +5,7 @@ using APIMatic.Core.Types.Sdk;
 using ShellEV.Standard.Http.Client;
 using ShellEV.Standard.Http.Request;
 using ShellEV.Standard.Http.Response;
+using System.Collections.Generic;
 
 namespace ShellEV.Standard.Exceptions
 {
@@ -20,5 +21,23 @@ namespace ShellEV.Standard.Exceptions
         /// <param name="reason"> The reason for throwing exception.</param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects.</param>
         public ApiException(string reason, HttpContext context = null) : base(reason, context) { }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            var toStringOutput = new List<string>();
+            ToString(toStringOutput);
+            return $"ApiException : ({string.Join(", ", toStringOutput)})";
+        }
+
+        /// <summary>
+        /// ToString overload.
+        /// </summary>
+        /// <param name="toStringOutput">List of strings.</param>
+        protected void ToString(List<string> toStringOutput)
+        {
+            toStringOutput.Add($"StatusCode = {HttpContext?.Response?.StatusCode}");
+            toStringOutput.Add($"Message = {Message}");
+        }
     }
 }

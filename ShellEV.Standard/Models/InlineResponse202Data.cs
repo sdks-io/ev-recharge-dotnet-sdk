@@ -69,7 +69,7 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.SessionId = {this.SessionId ?? "null"}");
+            toStringOutput.Add($"SessionId = {this.SessionId ?? "null"}");
         }
     }
 }

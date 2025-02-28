@@ -157,15 +157,15 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
-            toStringOutput.Add($"this.ExternalId = {this.ExternalId ?? "null"}");
-            toStringOutput.Add($"this.EvseId = {this.EvseId ?? "null"}");
-            toStringOutput.Add($"this.Status = {(this.Status == null ? "null" : this.Status.ToString())}");
-            toStringOutput.Add($"this.Connectors = {(this.Connectors == null ? "null" : $"[{string.Join(", ", this.Connectors)} ]")}");
-            toStringOutput.Add($"this.AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : this.AuthorizationMethods.ToString())}");
-            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
-            toStringOutput.Add($"this.Deleted = {this.Deleted ?? "null"}");
-            toStringOutput.Add($"this.PhysicalReference = {this.PhysicalReference ?? "null"}");
+            toStringOutput.Add($"Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
+            toStringOutput.Add($"ExternalId = {this.ExternalId ?? "null"}");
+            toStringOutput.Add($"EvseId = {this.EvseId ?? "null"}");
+            toStringOutput.Add($"Status = {(this.Status == null ? "null" : this.Status.ToString())}");
+            toStringOutput.Add($"Connectors = {(this.Connectors == null ? "null" : $"[{string.Join(", ", this.Connectors)} ]")}");
+            toStringOutput.Add($"AuthorizationMethods = {(this.AuthorizationMethods == null ? "null" : this.AuthorizationMethods.ToString())}");
+            toStringOutput.Add($"Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"Deleted = {this.Deleted ?? "null"}");
+            toStringOutput.Add($"PhysicalReference = {this.PhysicalReference ?? "null"}");
         }
     }
 }

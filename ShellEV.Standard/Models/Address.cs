@@ -102,10 +102,10 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.StreetAndNumber = {this.StreetAndNumber ?? "null"}");
-            toStringOutput.Add($"this.PostalCode = {this.PostalCode ?? "null"}");
-            toStringOutput.Add($"this.City = {this.City ?? "null"}");
-            toStringOutput.Add($"this.Country = {this.Country ?? "null"}");
+            toStringOutput.Add($"StreetAndNumber = {this.StreetAndNumber ?? "null"}");
+            toStringOutput.Add($"PostalCode = {this.PostalCode ?? "null"}");
+            toStringOutput.Add($"City = {this.City ?? "null"}");
+            toStringOutput.Add($"Country = {this.Country ?? "null"}");
         }
     }
 }

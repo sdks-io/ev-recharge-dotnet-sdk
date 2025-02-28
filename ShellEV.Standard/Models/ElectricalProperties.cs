@@ -102,10 +102,10 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.PowerType = {(this.PowerType == null ? "null" : this.PowerType.ToString())}");
-            toStringOutput.Add($"this.Voltage = {(this.Voltage == null ? "null" : this.Voltage.ToString())}");
-            toStringOutput.Add($"this.Amperage = {(this.Amperage == null ? "null" : this.Amperage.ToString())}");
-            toStringOutput.Add($"this.MaxElectricPower = {(this.MaxElectricPower == null ? "null" : this.MaxElectricPower.ToString())}");
+            toStringOutput.Add($"PowerType = {(this.PowerType == null ? "null" : this.PowerType.ToString())}");
+            toStringOutput.Add($"Voltage = {(this.Voltage == null ? "null" : this.Voltage.ToString())}");
+            toStringOutput.Add($"Amperage = {(this.Amperage == null ? "null" : this.Amperage.ToString())}");
+            toStringOutput.Add($"MaxElectricPower = {(this.MaxElectricPower == null ? "null" : this.MaxElectricPower.ToString())}");
         }
     }
 }

@@ -80,8 +80,8 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Latitude = {(this.Latitude == null ? "null" : this.Latitude.ToString())}");
-            toStringOutput.Add($"this.Longitude = {(this.Longitude == null ? "null" : this.Longitude.ToString())}");
+            toStringOutput.Add($"Latitude = {(this.Latitude == null ? "null" : this.Latitude.ToString())}");
+            toStringOutput.Add($"Longitude = {(this.Longitude == null ? "null" : this.Longitude.ToString())}");
         }
     }
 }

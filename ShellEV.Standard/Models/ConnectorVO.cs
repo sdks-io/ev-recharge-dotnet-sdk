@@ -157,15 +157,15 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
-            toStringOutput.Add($"this.ExternalId = {this.ExternalId ?? "null"}");
-            toStringOutput.Add($"this.ConnectorType = {(this.ConnectorType == null ? "null" : this.ConnectorType.ToString())}");
-            toStringOutput.Add($"this.ElectricalProperties = {(this.ElectricalProperties == null ? "null" : this.ElectricalProperties.ToString())}");
-            toStringOutput.Add($"this.FixedCable = {(this.FixedCable == null ? "null" : this.FixedCable.ToString())}");
-            toStringOutput.Add($"this.Tariff = {(this.Tariff == null ? "null" : this.Tariff.ToString())}");
-            toStringOutput.Add($"this.Updated = {this.Updated ?? "null"}");
-            toStringOutput.Add($"this.UpdatedBy = {(this.UpdatedBy == null ? "null" : this.UpdatedBy.ToString())}");
-            toStringOutput.Add($"this.Deleted = {this.Deleted ?? "null"}");
+            toStringOutput.Add($"Uid = {(this.Uid == null ? "null" : this.Uid.ToString())}");
+            toStringOutput.Add($"ExternalId = {this.ExternalId ?? "null"}");
+            toStringOutput.Add($"ConnectorType = {(this.ConnectorType == null ? "null" : this.ConnectorType.ToString())}");
+            toStringOutput.Add($"ElectricalProperties = {(this.ElectricalProperties == null ? "null" : this.ElectricalProperties.ToString())}");
+            toStringOutput.Add($"FixedCable = {(this.FixedCable == null ? "null" : this.FixedCable.ToString())}");
+            toStringOutput.Add($"Tariff = {(this.Tariff == null ? "null" : this.Tariff.ToString())}");
+            toStringOutput.Add($"Updated = {this.Updated ?? "null"}");
+            toStringOutput.Add($"UpdatedBy = {(this.UpdatedBy == null ? "null" : this.UpdatedBy.ToString())}");
+            toStringOutput.Add($"Deleted = {this.Deleted ?? "null"}");
         }
     }
 }

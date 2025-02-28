@@ -187,14 +187,14 @@ namespace ShellEV.Standard.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"this.Id = {(this.Id == null ? "null" : this.Id.ToString())}");
-            toStringOutput.Add($"this.UserId = {this.UserId ?? "null"}");
-            toStringOutput.Add($"this.EmaId = {this.EmaId ?? "null"}");
-            toStringOutput.Add($"this.EvseId = {this.EvseId ?? "null"}");
-            toStringOutput.Add($"this.LastUpdated = {this.LastUpdated ?? "null"}");
-            toStringOutput.Add($"this.StartedAt = {(this.StartedAt == null ? "null" : this.StartedAt.ToString())}");
-            toStringOutput.Add($"this.StoppedAt = {(this.StoppedAt == null ? "null" : this.StoppedAt.ToString())}");
-            toStringOutput.Add($"this.SessionState = {(this.SessionState == null ? "null" : this.SessionState.ToString())}");
+            toStringOutput.Add($"Id = {(this.Id == null ? "null" : this.Id.ToString())}");
+            toStringOutput.Add($"UserId = {this.UserId ?? "null"}");
+            toStringOutput.Add($"EmaId = {this.EmaId ?? "null"}");
+            toStringOutput.Add($"EvseId = {this.EvseId ?? "null"}");
+            toStringOutput.Add($"LastUpdated = {this.LastUpdated ?? "null"}");
+            toStringOutput.Add($"StartedAt = {(this.StartedAt == null ? "null" : this.StartedAt.ToString())}");
+            toStringOutput.Add($"StoppedAt = {(this.StoppedAt == null ? "null" : this.StoppedAt.ToString())}");
+            toStringOutput.Add($"SessionState = {(this.SessionState == null ? "null" : this.SessionState.ToString())}");
         }
     }
 }
