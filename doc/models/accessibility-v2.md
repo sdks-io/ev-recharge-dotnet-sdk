@@ -1,25 +1,23 @@
 
-# Accessibility
+# Accessibility V2
 
 Accessibility of the Location
 
 ## Structure
 
-`Accessibility`
+`AccessibilityV2`
 
 ## Fields
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `Status` | [`AccessibilityStatusEnum?`](../../doc/models/accessibility-status-enum.md) | Optional | Accessibility Status |
-| `Remark` | `string` | Optional | optional Arbitrary text about restrictions of the Location |
 
 ## Example (as JSON)
 
 ```json
 {
-  "status": "FreePublic",
-  "remark": "optional comment"
+  "status": "FreePublic"
 }
 ```
 

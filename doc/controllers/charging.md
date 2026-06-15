@@ -28,6 +28,10 @@ StartAsync(
     Models.ChargesessionStartBody body = null)
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -36,6 +40,8 @@ StartAsync(
 | `body` | [`ChargesessionStartBody`](../../doc/models/chargesession-start-body.md) | Body, Optional | - |
 
 ## Response Type
+
+**200**: SUCCESS
 
 [`Task<Models.InlineResponse202>`](../../doc/models/inline-response-202.md)
 
@@ -58,8 +64,31 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is BadRequestException)
+    {
+       // TODO: Handle BadRequestException exception here
+    }
+    if (e is UnauthorizedException)
+    {
+       // TODO: Handle UnauthorizedException exception here
+    }
+    if (e is V2ChargeSessionStart404ErrorException)
+    {
+       // TODO: Handle V2ChargeSessionStart404ErrorException exception here
+    }
+    if (e is TooManyRequestsException)
+    {
+       // TODO: Handle TooManyRequestsException exception here
+    }
+    if (e is InternalServerErrorException)
+    {
+       // TODO: Handle InternalServerErrorException exception here
+    }
+    if (e is ServiceunavailableException)
+    {
+       // TODO: Handle ServiceunavailableException exception here
+    }
 }
 ```
 
@@ -83,7 +112,7 @@ catch (ApiException e)
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestException`](../../doc/models/bad-request-exception.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedException`](../../doc/models/unauthorized-exception.md) |
-| 404 | Location Not Found | [`NotFoundException`](../../doc/models/not-found-exception.md) |
+| 404 | Location Not Found | [`V2ChargeSessionStart404ErrorException`](../../doc/models/v2-charge-session-start-404-error-exception.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsException`](../../doc/models/too-many-requests-exception.md) |
 | 500 | Internal Server error | [`InternalServerErrorException`](../../doc/models/internal-server-error-exception.md) |
 | 503 | Service unavailable | [`ServiceunavailableException`](../../doc/models/serviceunavailable-exception.md) |
@@ -99,14 +128,20 @@ StopAsync(
     string sessionId)
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
+| `sessionId` | `string` | Query, Required | Session Id<br><br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 
 ## Response Type
+
+**200**: SUCCESS
 
 [`Task<Models.InlineResponse2021>`](../../doc/models/inline-response-2021.md)
 
@@ -124,8 +159,31 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is BadRequestException)
+    {
+       // TODO: Handle BadRequestException exception here
+    }
+    if (e is UnauthorizedException)
+    {
+       // TODO: Handle UnauthorizedException exception here
+    }
+    if (e is V2ChargeSessionStop404ErrorException)
+    {
+       // TODO: Handle V2ChargeSessionStop404ErrorException exception here
+    }
+    if (e is TooManyRequestsException)
+    {
+       // TODO: Handle TooManyRequestsException exception here
+    }
+    if (e is InternalServerErrorException)
+    {
+       // TODO: Handle InternalServerErrorException exception here
+    }
+    if (e is ServiceunavailableException)
+    {
+       // TODO: Handle ServiceunavailableException exception here
+    }
 }
 ```
 
@@ -144,7 +202,7 @@ catch (ApiException e)
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestException`](../../doc/models/bad-request-exception.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedException`](../../doc/models/unauthorized-exception.md) |
-| 404 | Location Not Found | [`NotFoundException`](../../doc/models/not-found-exception.md) |
+| 404 | Location Not Found | [`V2ChargeSessionStop404ErrorException`](../../doc/models/v2-charge-session-stop-404-error-exception.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsException`](../../doc/models/too-many-requests-exception.md) |
 | 500 | Internal Server error | [`InternalServerErrorException`](../../doc/models/internal-server-error-exception.md) |
 | 503 | Service unavailable | [`ServiceunavailableException`](../../doc/models/serviceunavailable-exception.md) |
@@ -160,14 +218,20 @@ GetChargeSessionRetrieveAsync(
     string sessionId)
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `sessionId` | `string` | Query, Required | Session Id<br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
+| `sessionId` | `string` | Query, Required | Session Id<br><br>**Constraints**: *Minimum Length*: `36`, *Maximum Length*: `36`, *Pattern*: `^[{]?[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}[}]?$` |
 
 ## Response Type
+
+**200**: Success
 
 [`Task<Models.GetChargeSessionRetrieveResponse200Json>`](../../doc/models/get-charge-session-retrieve-response-200-json.md)
 
@@ -185,8 +249,31 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
+    if (e is BadRequestException)
+    {
+       // TODO: Handle BadRequestException exception here
+    }
+    if (e is UnauthorizedException)
+    {
+       // TODO: Handle UnauthorizedException exception here
+    }
+    if (e is V2ChargeSessionRetrieve404ErrorException)
+    {
+       // TODO: Handle V2ChargeSessionRetrieve404ErrorException exception here
+    }
+    if (e is TooManyRequestsException)
+    {
+       // TODO: Handle TooManyRequestsException exception here
+    }
+    if (e is InternalServerErrorException)
+    {
+       // TODO: Handle InternalServerErrorException exception here
+    }
+    if (e is ServiceunavailableException)
+    {
+       // TODO: Handle ServiceunavailableException exception here
+    }
 }
 ```
 
@@ -219,7 +306,7 @@ catch (ApiException e)
 |  --- | --- | --- |
 | 400 | The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). | [`BadRequestException`](../../doc/models/bad-request-exception.md) |
 | 401 | The request has not been applied because it lacks valid authentication credentials for the target resource. | [`UnauthorizedException`](../../doc/models/unauthorized-exception.md) |
-| 404 | Location Not Found | [`NotFoundException`](../../doc/models/not-found-exception.md) |
+| 404 | Location Not Found | [`V2ChargeSessionRetrieve404ErrorException`](../../doc/models/v2-charge-session-retrieve-404-error-exception.md) |
 | 429 | The Request reached maximum allocated rate limit | [`TooManyRequestsException`](../../doc/models/too-many-requests-exception.md) |
 | 500 | Internal Server error | [`InternalServerErrorException`](../../doc/models/internal-server-error-exception.md) |
 | 503 | Service unavailable | [`ServiceunavailableException`](../../doc/models/serviceunavailable-exception.md) |
@@ -235,14 +322,20 @@ ActiveAsync(
     string emaId)
 ```
 
+## Authentication
+
+This endpoint requires [BearerAuth](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestId` | `Guid` | Header, Required | RequestId must be unique identifier value that can be used by the consumer to correlate each request /response .<br>Format.<br> Its canonical textual representation, the 16 octets of a UUID are represented as 32 hexadecimal (base-16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 hexadecimal characters and 4 hyphens) <br> |
-| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
+| `emaId` | `string` | Query, Required | Emobility Account Identifier(Ema-ID)<br><br>**Constraints**: *Minimum Length*: `14`, *Maximum Length*: `19` |
 
 ## Response Type
+
+**200**: SUCCESS
 
 [`Task<Models.ActiveResponse200Json>`](../../doc/models/active-response-200-json.md)
 
@@ -260,7 +353,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

@@ -1,9 +1,9 @@
 
-# Response
+# Response V2
 
 ## Structure
 
-`Response`
+`ResponseV2`
 
 ## Fields
 
@@ -11,7 +11,7 @@
 |  --- | --- | --- | --- |
 | `RequestId` | `Guid?` | Optional | requestId is unique identifier value that is attached to requests and messages that allow reference to a particular transaction or event chain. |
 | `Status` | `string` | Optional | status of the API call |
-| `Data` | [`List<LocationResponeObject>`](../../doc/models/location-respone-object.md) | Optional | API Response |
+| `Data` | [`List<LocationResponeObjectV2>`](../../doc/models/location-respone-object-v2.md) | Optional | API Response |
 
 ## Example (as JSON)
 
@@ -21,7 +21,22 @@
   "status": "SUCCESS",
   "data": [
     {
-      "uid": 74,
+      "uid": "uid0",
+      "externalId": "externalId6",
+      "coordinates": {
+        "latitude": 39.14,
+        "longitude": 36.94
+      },
+      "operatorName": "operatorName0",
+      "address": {
+        "streetAndNumber": "streetAndNumber2",
+        "postalCode": "postalCode8",
+        "city": "city6",
+        "country": "country0"
+      }
+    },
+    {
+      "uid": "uid0",
       "externalId": "externalId6",
       "coordinates": {
         "latitude": 39.14,
