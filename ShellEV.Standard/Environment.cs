@@ -22,21 +22,9 @@ namespace ShellEV.Standard
         Production,
 
         /// <summary>
-        /// Production Server.
+        /// Test Server.
         /// </summary>
         [EnumMember(Value = "environment2")]
         Environment2,
-
-        /// <summary>
-        /// Test Server.
-        /// </summary>
-        [EnumMember(Value = "environment3")]
-        Environment3,
-
-        /// <summary>
-        /// Test Server.
-        /// </summary>
-        [EnumMember(Value = "environment4")]
-        Environment4,
     }
 }

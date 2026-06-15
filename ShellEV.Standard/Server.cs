@@ -15,5 +15,10 @@ namespace ShellEV.Standard
         /// Default.
         /// </summary>
         Default,
+
+        /// <summary>
+        /// AccessTokenServer.
+        /// </summary>
+        AccessTokenServer,
     }
 }

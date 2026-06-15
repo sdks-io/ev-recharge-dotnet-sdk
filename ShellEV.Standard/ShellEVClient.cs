@@ -29,24 +29,14 @@ namespace ShellEV.Standard
                 Environment.Production, new Dictionary<Enum, string>
                 {
                     { Server.Default, "https://api.shell.com/ev" },
+                    { Server.AccessTokenServer, "https://api.shell.com/v2/oauth" },
                 }
             },
             {
                 Environment.Environment2, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://api.shell.com/v2/oauth" },
-                }
-            },
-            {
-                Environment.Environment3, new Dictionary<Enum, string>
-                {
                     { Server.Default, "https://api-test.shell.com/ev" },
-                }
-            },
-            {
-                Environment.Environment4, new Dictionary<Enum, string>
-                {
-                    { Server.Default, "https://api-test.shell.com/v2/oauth" },
+                    { Server.AccessTokenServer, "https://api.shell.com/v2/oauth" },
                 }
             },
         };

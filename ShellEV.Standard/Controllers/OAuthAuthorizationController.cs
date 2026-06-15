@@ -50,7 +50,7 @@ namespace ShellEV.Standard.Controllers
                 Dictionary<string, object> fieldParameters = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.OAuthToken>()
-              .Server(Server.Default)
+              .Server(Server.AccessTokenServer)
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/token")
                   .Parameters(parameters => parameters
