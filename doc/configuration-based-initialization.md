@@ -31,7 +31,7 @@ var configuration = new ConfigurationBuilder()
 // Instantiate your SDK builder and configure it from IConfiguration with overrides
 var client = ShellEVClient.Builder
     .FromConfiguration(configuration.GetSection("ShellEV"))
-    .Environment(Environment.Production)
+    .Environment(Environment.SIT)
     .HttpClientConfig(c => c.Timeout(TimeSpan.FromSeconds(60)))
     .Build();
 ```
@@ -41,7 +41,7 @@ var client = ShellEVClient.Builder
 ```csharp
 {
   "ShellEV": {
-    "Environment": "production",
+    "Environment": "sit",
     "ClientCredentialsAuth": {
       "OAuthClientId": "oAuthClientId",
       "OAuthClientSecret": "oAuthClientSecret",

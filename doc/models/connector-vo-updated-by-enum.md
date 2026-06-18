@@ -18,7 +18,9 @@ Source of the last update
 
 ## Example
 
-```
-TariffService
+```csharp
+using ShellEV.Standard.Models;
+
+ConnectorVOUpdatedByEnum connectorVOUpdatedBy = ConnectorVOUpdatedByEnum.Feed;
 ```
 

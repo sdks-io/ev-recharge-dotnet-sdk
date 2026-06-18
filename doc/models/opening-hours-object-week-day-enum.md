@@ -21,7 +21,9 @@
 
 ## Example
 
-```
-Mon
+```csharp
+using ShellEV.Standard.Models;
+
+OpeningHoursObjectWeekDayEnum openingHoursObjectWeekDay = OpeningHoursObjectWeekDayEnum.Sat;
 ```
 

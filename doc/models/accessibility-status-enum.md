@@ -18,7 +18,9 @@ Accessibility Status
 
 ## Example
 
-```
-FreePublic
+```csharp
+using ShellEV.Standard.Models;
+
+AccessibilityStatusEnum accessibilityStatus = AccessibilityStatusEnum.FreePublic;
 ```
 

@@ -22,22 +22,26 @@ A Marker is a place on the map that represent a single Location
 | `AuthorizationMethods` | [`List<SingleLocationMarkerAuthorizationMethodsItemsEnum>`](../../doc/models/single-location-marker-authorization-methods-items-enum.md) | Optional | Methods that can be used to Authorize sessions on this EVSE |
 | `OperatorId` | `string` | Optional | Unique Id of the operator |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+SingleLocationMarker singleLocationMarker = new SingleLocationMarker
 {
-  "markerType": "SingleLocation",
-  "uniqueKey": "2057411_1",
-  "status": "Available",
-  "evseCount": 12.0,
-  "maxPower": 42.0,
-  "geoHash": "sx",
-  "locationUid": 2057411,
-  "operatorId": "AT-HTB",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  }
-}
+    MarkerType = "SingleLocation",
+    UniqueKey = "2057411_1",
+    Status = SingleLocationMarkerStatusEnum.Available,
+    Coordinates = new Coordinates1
+    {
+        Latitude = 39.14,
+        Longitude = 36.94,
+    },
+    EvseCount = 12,
+    MaxPower = 42,
+    GeoHash = "sx",
+    LocationUid = 2057411,
+    OperatorId = "AT-HTB",
+};
 ```
 

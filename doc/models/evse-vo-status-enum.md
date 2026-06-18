@@ -18,7 +18,9 @@ The current status of the EVSE units availability
 
 ## Example
 
-```
-Available
+```csharp
+using ShellEV.Standard.Models;
+
+EvseVOStatusEnum evseVOStatus = EvseVOStatusEnum.Available;
 ```
 

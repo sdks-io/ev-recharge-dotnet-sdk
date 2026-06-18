@@ -50,9 +50,9 @@ namespace ShellEV.Standard.Controllers
                 Dictionary<string, object> fieldParameters = null,
                 CancellationToken cancellationToken = default)
             => await CreateApiCall<Models.OAuthToken>()
-              .Server(Server.AccessTokenServer)
+              .Server(Server.OAuthServer)
               .RequestBuilder(requestBuilder => requestBuilder
-                  .Setup(HttpMethod.Post, "/token")
+                  .Setup(HttpMethod.Post, "/v2/oauth/token")
                   .Parameters(parameters => parameters
                       .AdditionalForms(additionalForms => additionalForms.Setup(fieldParameters))
                       .Form(form => form.Setup("grant_type", "client_credentials"))

@@ -28,3 +28,11 @@
 | `Tesla` |
 | `Unspecified` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+ConnectorTypesEnum connectorTypes = ConnectorTypesEnum.Type2;
+```
+

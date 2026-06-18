@@ -17,7 +17,9 @@ Power Type used in this connector.
 
 ## Example
 
-```
-AC1Phase
+```csharp
+using ShellEV.Standard.Models;
+
+ElectricalPropertiesPowerTypeEnum electricalPropertiesPowerType = ElectricalPropertiesPowerTypeEnum.AC3Phase;
 ```
 

@@ -13,3 +13,11 @@
 | `RFIDToken` |
 | `PnC` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+SingleLocationMarkerAuthorizationMethodsItemsEnum singleLocationMarkerAuthorizationMethodsItems = SingleLocationMarkerAuthorizationMethodsItemsEnum.RFIDToken;
+```
+

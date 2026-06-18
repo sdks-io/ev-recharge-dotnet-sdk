@@ -30,3 +30,11 @@ Filter by Locations that have Connectors with these Connector Types
 | `Tesla` |
 | `Unspecified` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+NearbyLocationsConnectorTypesEnum nearbyLocationsConnectorTypes = NearbyLocationsConnectorTypesEnum.Type3;
+```
+

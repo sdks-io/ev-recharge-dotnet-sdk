@@ -32,7 +32,9 @@ Type of the connector in the EVSE unit.
 
 ## Example
 
-```
-Type2
+```csharp
+using ShellEV.Standard.Models;
+
+ConnectorVOConnectorTypeEnum connectorVOConnectorType = ConnectorVOConnectorTypeEnum.Type3;
 ```
 

@@ -18,7 +18,9 @@ Type of the price component
 
 ## Example
 
-```
-FLAT
+```csharp
+using ShellEV.Standard.Models;
+
+TypeEnum type = TypeEnum.FLAT;
 ```
 

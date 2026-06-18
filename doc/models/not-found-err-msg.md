@@ -14,17 +14,21 @@
 | `Description` | `string` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `Details` | `List<string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+NotFoundErrMsg notFoundErrMsg = new NotFoundErrMsg
 {
-  "code": "E0038",
-  "message": "Not Found",
-  "description": "Requested API resource not found",
-  "details": [
-    "details9",
-    "details0"
-  ]
-}
+    Code = "E0038",
+    Message = "Not Found",
+    Description = "Requested API resource not found",
+    Details = new List<string>
+    {
+        "details7",
+    },
+};
 ```
 

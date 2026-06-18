@@ -16,14 +16,17 @@ Address of the Shell Recharge Location
 | `City` | `string` | Optional | City name of the Shell Recharge Location |
 | `Country` | `string` | Optional | ISO 3166 Alpha-2 Country Code of the Shell Recharge Location |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+Address address = new Address
 {
-  "streetAndNumber": "Maarssenbroeksedijk 33",
-  "postalCode": "3542 DM",
-  "city": "Utrecht",
-  "country": "NLD"
-}
+    StreetAndNumber = "Maarssenbroeksedijk 33",
+    PostalCode = "3542 DM",
+    City = "Utrecht",
+    Country = "NLD",
+};
 ```
 

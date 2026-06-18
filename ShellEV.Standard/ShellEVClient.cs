@@ -26,17 +26,17 @@ namespace ShellEV.Standard
             new Dictionary<Environment, Dictionary<Enum, string>>
         {
             {
-                Environment.Production, new Dictionary<Enum, string>
+                Environment.SIT, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://api.shell.com/ev" },
-                    { Server.AccessTokenServer, "https://api.shell.com/v2/oauth" },
+                    { Server.OAuthServer, "https://api-test.shell.com" },
+                    { Server.Shell, "https://api-test.shell.com/ev" },
                 }
             },
             {
-                Environment.Environment2, new Dictionary<Enum, string>
+                Environment.Production, new Dictionary<Enum, string>
                 {
-                    { Server.Default, "https://api-test.shell.com/ev" },
-                    { Server.AccessTokenServer, "https://api.shell.com/v2/oauth" },
+                    { Server.OAuthServer, "https://api.shell.com" },
+                    { Server.Shell, "https://api.shell.com/ev" },
                 }
             },
         };
@@ -66,7 +66,7 @@ namespace ShellEV.Standard
                 })
                 .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
-                .ServerUrls(EnvironmentsMap[environment], Server.Default)
+                .ServerUrls(EnvironmentsMap[environment], Server.Shell)
                 .UserAgent(userAgent)
                 .Build();
             ClientCredentialsAuth = clientCredentialsAuthManager;
@@ -124,9 +124,9 @@ namespace ShellEV.Standard
         /// Gets the URL for a particular alias in the current environment and appends
         /// it with template parameters.
         /// </summary>
-        /// <param name="alias">Default value:DEFAULT.</param>
+        /// <param name="alias">Default value:SHELL.</param>
         /// <returns>Returns the baseurl.</returns>
-        public string GetBaseUri(Server alias = Server.Default)
+        public string GetBaseUri(Server alias = Server.Shell)
         {
             return globalConfiguration.ServerUrl(alias);
         }
@@ -197,7 +197,7 @@ namespace ShellEV.Standard
         /// </summary>
         public class Builder
         {
-            private Environment _environment = ShellEV.Standard.Environment.Production;
+            private Environment _environment = ShellEV.Standard.Environment.SIT;
             private ClientCredentialsAuthModel _clientCredentialsAuthModel = new ClientCredentialsAuthModel();
             private HttpClientConfiguration.Builder _httpClientConfig = new HttpClientConfiguration.Builder();
             private HttpCallback _httpCallback;

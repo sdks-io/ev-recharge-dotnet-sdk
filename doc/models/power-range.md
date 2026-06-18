@@ -12,12 +12,15 @@
 | `Min` | `int` | Required | Minimum supported power in kW |
 | `Max` | `int` | Required | Maximum supported power in kW |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+PowerRange powerRange = new PowerRange
 {
-  "min": 0,
-  "max": 100
-}
+    Min = 0,
+    Max = 100,
+};
 ```
 

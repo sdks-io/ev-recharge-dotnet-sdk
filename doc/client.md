@@ -5,7 +5,7 @@ The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
-| Environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
+| Environment | [`Environment`](../README.md#environments) | The API environment. <br> **Default: `Environment.SIT`** |
 | Timeout | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
 | HttpClientConfiguration | [`Action<HttpClientConfiguration.Builder>`](../doc/http-client-configuration-builder.md) | Action delegate that configures the HTTP client by using the HttpClientConfiguration.Builder for customizing API call settings.<br>*Default*: `new HttpClient()` |
 | ClientCredentialsAuth | [`ClientCredentialsAuth`](auth/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
@@ -29,7 +29,7 @@ ShellEVClient client = new ShellEVClient.Builder()
         .Build())
     .HttpClientConfig(httpClientConfig =>
         httpClientConfig.Timeout(TimeSpan.FromSeconds(100)))
-    .Environment(ShellEV.Standard.Environment.Production)
+    .Environment(ShellEV.Standard.Environment.SIT)
     .Build();
 ```
 
@@ -79,7 +79,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 
 | Name | Description | Return Type |
 |  --- | --- | --- |
-| `GetBaseUri(Server alias = Server.Default)` | Gets the URL for a particular alias in the current environment and appends it with template parameters. | `string` |
+| `GetBaseUri(Server alias = Server.Shell)` | Gets the URL for a particular alias in the current environment and appends it with template parameters. | `string` |
 | `ToBuilder()` | Creates an object of the Shell EVClient using the values provided for the builder. | `Builder` |
 
 ## Shell EVClient Builder Class

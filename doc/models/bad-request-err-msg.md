@@ -14,18 +14,21 @@
 | `Description` | `string` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the validation error |
 | `Details` | `List<string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+BadRequestErrMsg badRequestErrMsg = new BadRequestErrMsg
 {
-  "code": "E0001",
-  "message": "Bad Request",
-  "description": "Authorization header is missing",
-  "details": [
-    "details7",
-    "details8",
-    "details9"
-  ]
-}
+    Code = "E0001",
+    Message = "Bad Request",
+    Description = "Authorization header is missing",
+    Details = new List<string>
+    {
+        "details3",
+    },
+};
 ```
 

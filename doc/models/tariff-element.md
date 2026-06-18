@@ -12,25 +12,32 @@
 | `PriceComponents` | [`List<PriceComponent>`](../../doc/models/price-component.md) | Required | - |
 | `Restrictions` | [`Restrictions`](../../doc/models/restrictions.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+TariffElement tariffElement = new TariffElement
 {
-  "priceComponents": [
+    PriceComponents = new List<PriceComponent>
     {
-      "type": "FLAT",
-      "stepSize": 1,
-      "price": 0.3,
-      "vat": 21.0
-    }
-  ],
-  "restrictions": {
-    "startTime": "startTime0",
-    "endTime": "endTime2",
-    "startDate": "2016-03-13",
-    "endDate": "2016-03-13",
-    "minKwh": 247.22
-  }
-}
+        new PriceComponent
+        {
+            Type = TypeEnum.FLAT,
+            StepSize = 1,
+            Price = 0.3,
+            Vat = 21,
+        },
+    },
+    Restrictions = new Restrictions
+    {
+        StartTime = "startTime0",
+        EndTime = "endTime2",
+        StartDate = DateTime.Parse("2016-03-13"),
+        EndDate = DateTime.Parse("2016-03-13"),
+        MinKwh = 247.22,
+    },
+};
 ```
 

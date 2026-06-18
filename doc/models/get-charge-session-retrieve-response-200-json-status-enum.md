@@ -16,7 +16,9 @@ Indicates overall status of the request
 
 ## Example
 
-```
-SUCCESS
+```csharp
+using ShellEV.Standard.Models;
+
+GetChargeSessionRetrieveResponse200JsonStatusEnum getChargeSessionRetrieveResponse200JsonStatus = GetChargeSessionRetrieveResponse200JsonStatusEnum.SUCCESS;
 ```
 

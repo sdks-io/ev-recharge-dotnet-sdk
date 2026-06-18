@@ -16,3 +16,11 @@ Tariff type classification
 | `REIMBURSEMENT` |
 | `VMSP` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+TariffTypeEnum tariffType = TariffTypeEnum.REIMBURSEMENT;
+```
+

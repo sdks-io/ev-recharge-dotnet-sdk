@@ -20,19 +20,24 @@ Each Location will contain one or more EVSEs (Electric Vehicle Supply Equipment)
 | `Connectors` | [`List<ConnectorV2>`](../../doc/models/connector-v2.md) | Optional | List of all connectors available on this EVSE unit. |
 | `AuthorizationMethods` | [`List<SingleLocationMarkerAuthorizationMethodsItemsEnum>`](../../doc/models/single-location-marker-authorization-methods-items-enum.md) | Optional | Methods that can be used to Authorize sessions on this EVSE |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+EvseV2 evseV2 = new EvseV2
 {
-  "uid": "NL*MKS*E0000001*0_1",
-  "externalId": "01001188_1",
-  "evseId": "NL*TNM*E01000401*0",
-  "status": "Available",
-  "updated": "10/06/2021 10:44:24",
-  "physicalReference": "Green",
-  "authorizationMethods": [
-    "NewMotionApp"
-  ]
-}
+    Uid = "NL*MKS*E0000001*0_1",
+    ExternalId = "01001188_1",
+    EvseId = "NL*TNM*E01000401*0",
+    Status = EvseVOStatusEnum.Available,
+    Updated = "2021-10-06T10:44:24Z",
+    PhysicalReference = "Green",
+    AuthorizationMethods = new List<SingleLocationMarkerAuthorizationMethodsItemsEnum>
+    {
+        SingleLocationMarkerAuthorizationMethodsItemsEnum.NewMotionApp,
+    },
+};
 ```
 

@@ -16,3 +16,11 @@ Filter by Locations that have the given status
 | `Unavailable` |
 | `Unknown` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+GetEVLocationsEvseStatusEnum getEVLocationsEvseStatus = GetEVLocationsEvseStatusEnum.Available;
+```
+

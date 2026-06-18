@@ -27,51 +27,70 @@ Tariff metadata aligned with TariffV2 GraphQL schema
 | `LastUpdated` | `DateTime` | Required | - |
 | `CreatedBy` | `string` | Required | Identifier of the actor who created the tariff |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+TariffV2 tariffV2 = new TariffV2
 {
-  "tariffId": "123e4567-e89b-12d3-a456-426614174000",
-  "tariffType": "DRIVER",
-  "powerRange": {
-    "min": 0,
-    "max": 100
-  },
-  "internalId": "123e4567-e89b-12d3-a456-426614174000",
-  "operatorId": "AT-HTB",
-  "providerId": "Shell_RP_2",
-  "currency": "EUR",
-  "tariffAltText": [
+    TariffId = "123e4567-e89b-12d3-a456-426614174000",
+    TariffType = TariffTypeEnum.REIMBURSEMENT,
+    PowerRange = new PowerRange
     {
-      "language": "en",
-      "text": "€0.30 per kWh"
-    }
-  ],
-  "minPrice": 0.3,
-  "maxPrice": 999.0,
-  "elements": [
+        Min = 0,
+        Max = 100,
+    },
+    InternalId = "123e4567-e89b-12d3-a456-426614174000",
+    OperatorId = "AT-HTB",
+    ProviderId = "Shell_RP_2",
+    Currency = "EUR",
+    TariffAltText = new List<TariffAltText>
     {
-      "priceComponents": [
+        new TariffAltText
         {
-          "type": "FLAT",
-          "stepSize": 1,
-          "price": 0.3,
-          "vat": 21.0
-        }
-      ],
-      "restrictions": {
-        "startTime": "startTime0",
-        "endTime": "endTime2",
-        "startDate": "2016-03-13",
-        "endDate": "2016-03-13",
-        "minKwh": 247.22
-      }
-    }
-  ],
-  "startDateTime": "10/06/2021 10:44:24",
-  "endDateTime": "10/06/2021 10:44:24",
-  "lastUpdated": "10/06/2021 10:44:24",
-  "createdBy": "STAGE_API"
-}
+            Language = "en",
+            Text = "€0.30 per kWh",
+        },
+    },
+    MinPrice = 0.3,
+    MaxPrice = 999,
+    Elements = new List<TariffElement>
+    {
+        new TariffElement
+        {
+            PriceComponents = new List<PriceComponent>
+            {
+                new PriceComponent
+                {
+                    Type = TypeEnum.FLAT,
+                    StepSize = 1,
+                    Price = 0.3,
+                    Vat = 21,
+                },
+            },
+            Restrictions = new Restrictions
+            {
+                StartTime = "startTime0",
+                EndTime = "endTime2",
+                StartDate = DateTime.Parse("2016-03-13"),
+                EndDate = DateTime.Parse("2016-03-13"),
+                MinKwh = 247.22,
+            },
+        },
+    },
+    StartDateTime = DateTime.ParseExact("2021-10-06T10:44:24Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    EndDateTime = DateTime.ParseExact("2021-10-06T10:44:24Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    LastUpdated = DateTime.ParseExact("2021-10-06T10:44:24Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+        provider: CultureInfo.InvariantCulture,
+        DateTimeStyles.RoundtripKind),
+    CreatedBy = "STAGE_API",
+};
 ```
 

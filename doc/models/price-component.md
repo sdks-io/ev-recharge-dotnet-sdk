@@ -14,14 +14,17 @@
 | `Price` | `double` | Required | Price per step in the specified currency for this price component |
 | `Vat` | `double` | Required | VAT percentage applicable to this price component |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+PriceComponent priceComponent = new PriceComponent
 {
-  "type": "FLAT",
-  "stepSize": 1,
-  "price": 0.3,
-  "vat": 21.0
-}
+    Type = TypeEnum.FLAT,
+    StepSize = 1,
+    Price = 0.3,
+    Vat = 21,
+};
 ```
 

@@ -16,15 +16,15 @@ namespace ShellEV.Standard
     public enum Environment
     {
         /// <summary>
-        /// Production Server.
+        /// SIT.
         /// </summary>
-        [EnumMember(Value = "production")]
-        Production,
+        [EnumMember(Value = "SIT")]
+        SIT,
 
         /// <summary>
-        /// Test Server.
+        /// Production.
         /// </summary>
-        [EnumMember(Value = "environment2")]
-        Environment2,
+        [EnumMember(Value = "Production")]
+        Production,
     }
 }

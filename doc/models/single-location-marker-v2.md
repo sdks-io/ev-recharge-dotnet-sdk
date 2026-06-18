@@ -21,21 +21,25 @@ A Marker is a place on the map that represent a single Location
 | `OperatorName` | `string` | Optional | Operator of this Shell Recharge Location |
 | `MarkerType` | `string` | Required, Constant | Type of the Marker, in this case it will always be SingleLocation<br><br>**Value**: `"SingleLocation"` |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+SingleLocationMarkerV2 singleLocationMarkerV2 = new SingleLocationMarkerV2
 {
-  "status": "Available",
-  "evseCount": 12.0,
-  "locationCount": 6.0,
-  "locationUid": "2057411",
-  "operatorName": "TheNewMotion",
-  "markerType": "SingleLocation",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  },
-  "maxPower": 45.08
-}
+    MarkerType = "SingleLocation",
+    Status = SingleLocationMarkerStatusEnum.Available,
+    Coordinates = new Coordinates
+    {
+        Latitude = 39.14,
+        Longitude = 36.94,
+    },
+    EvseCount = 12,
+    MaxPower = 75.6,
+    LocationCount = 6,
+    LocationUid = "2057411",
+    OperatorName = "TheNewMotion",
+};
 ```
 

@@ -18,7 +18,9 @@ Source of the last update of the tariff details
 
 ## Example
 
-```
-TariffService
+```csharp
+using ShellEV.Standard.Models;
+
+TariffVOUpdatedByEnum tariffVOUpdatedBy = TariffVOUpdatedByEnum.Feed;
 ```
 

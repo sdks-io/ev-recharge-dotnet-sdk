@@ -17,131 +17,244 @@ An EVSE can have one or many Connectors. Each Connector will normally have a dif
 | `ElectricalProperties` | [`ElectricalPropertiesV2`](../../doc/models/electrical-properties-v2.md) | Optional | Electrical Properties of the Connector |
 | `Tariffs` | [`List<TariffV2>`](../../doc/models/tariff-v2.md) | Optional | Tariffs applicable to this Connector |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+using System.Globalization;
+
+SearchByIdConnector searchByIdConnector = new SearchByIdConnector
 {
-  "uid": "2",
-  "externalId": "01000861_1_21",
-  "connectorType": "Type2",
-  "electricalProperties": {
-    "powerType": "AC1Phase",
-    "voltage": 110.62,
-    "amperage": 46.4,
-    "maxElectricPower": 232.04
-  },
-  "tariffs": [
+    Uid = "2",
+    ExternalId = "01000861_1_21",
+    ConnectorType = ConnectorVOConnectorTypeEnum.Type2,
+    ElectricalProperties = new ElectricalPropertiesV2
     {
-      "tariffId": "tariffId4",
-      "tariffType": "DRIVER",
-      "powerRange": {
-        "min": 102,
-        "max": 20
-      },
-      "internalId": "internalId2",
-      "operatorId": "operatorId8",
-      "providerId": "providerId2",
-      "currency": "currency8",
-      "tariffAltText": [
-        {
-          "language": "language8",
-          "text": "text6"
-        }
-      ],
-      "minPrice": 189.42,
-      "maxPrice": 247.64,
-      "elements": [
-        {
-          "priceComponents": [
-            {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
-            },
-            {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
-            },
-            {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
-            }
-          ],
-          "restrictions": {
-            "startTime": "startTime0",
-            "endTime": "endTime2",
-            "startDate": "2016-03-13",
-            "endDate": "2016-03-13",
-            "minKwh": 247.22
-          }
-        }
-      ],
-      "startDateTime": "2016-03-13T12:52:32.123Z",
-      "endDateTime": "2016-03-13T12:52:32.123Z",
-      "lastUpdated": "2016-03-13T12:52:32.123Z",
-      "createdBy": "createdBy4"
+        PowerType = ElectricalPropertiesPowerTypeEnum.AC1Phase,
+        Voltage = 110.62,
+        Amperage = 46.4,
+        MaxElectricPower = 232.04,
     },
+    Tariffs = new List<TariffV2>
     {
-      "tariffId": "tariffId4",
-      "tariffType": "DRIVER",
-      "powerRange": {
-        "min": 102,
-        "max": 20
-      },
-      "internalId": "internalId2",
-      "operatorId": "operatorId8",
-      "providerId": "providerId2",
-      "currency": "currency8",
-      "tariffAltText": [
+        new TariffV2
         {
-          "language": "language8",
-          "text": "text6"
-        }
-      ],
-      "minPrice": 189.42,
-      "maxPrice": 247.64,
-      "elements": [
+            TariffId = "tariffId4",
+            TariffType = TariffTypeEnum.DRIVER,
+            PowerRange = new PowerRange
+            {
+                Min = 102,
+                Max = 20,
+            },
+            InternalId = "internalId2",
+            OperatorId = "operatorId8",
+            ProviderId = "providerId2",
+            Currency = "currency8",
+            TariffAltText = new List<TariffAltText>
+            {
+                new TariffAltText
+                {
+                    Language = "language8",
+                    Text = "text6",
+                },
+            },
+            MinPrice = 189.42,
+            MaxPrice = 247.64,
+            Elements = new List<TariffElement>
+            {
+                new TariffElement
+                {
+                    PriceComponents = new List<PriceComponent>
+                    {
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                    },
+                    Restrictions = new Restrictions
+                    {
+                        StartTime = "startTime0",
+                        EndTime = "endTime2",
+                        StartDate = DateTime.Parse("2016-03-13"),
+                        EndDate = DateTime.Parse("2016-03-13"),
+                        MinKwh = 247.22,
+                    },
+                },
+            },
+            StartDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            EndDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            LastUpdated = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            CreatedBy = "createdBy4",
+        },
+        new TariffV2
         {
-          "priceComponents": [
+            TariffId = "tariffId4",
+            TariffType = TariffTypeEnum.DRIVER,
+            PowerRange = new PowerRange
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+                Min = 102,
+                Max = 20,
             },
+            InternalId = "internalId2",
+            OperatorId = "operatorId8",
+            ProviderId = "providerId2",
+            Currency = "currency8",
+            TariffAltText = new List<TariffAltText>
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
+                new TariffAltText
+                {
+                    Language = "language8",
+                    Text = "text6",
+                },
             },
+            MinPrice = 189.42,
+            MaxPrice = 247.64,
+            Elements = new List<TariffElement>
             {
-              "type": "TIME",
-              "stepSize": 124,
-              "price": 196.82,
-              "vat": 137.74
-            }
-          ],
-          "restrictions": {
-            "startTime": "startTime0",
-            "endTime": "endTime2",
-            "startDate": "2016-03-13",
-            "endDate": "2016-03-13",
-            "minKwh": 247.22
-          }
-        }
-      ],
-      "startDateTime": "2016-03-13T12:52:32.123Z",
-      "endDateTime": "2016-03-13T12:52:32.123Z",
-      "lastUpdated": "2016-03-13T12:52:32.123Z",
-      "createdBy": "createdBy4"
-    }
-  ]
-}
+                new TariffElement
+                {
+                    PriceComponents = new List<PriceComponent>
+                    {
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                    },
+                    Restrictions = new Restrictions
+                    {
+                        StartTime = "startTime0",
+                        EndTime = "endTime2",
+                        StartDate = DateTime.Parse("2016-03-13"),
+                        EndDate = DateTime.Parse("2016-03-13"),
+                        MinKwh = 247.22,
+                    },
+                },
+            },
+            StartDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            EndDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            LastUpdated = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            CreatedBy = "createdBy4",
+        },
+        new TariffV2
+        {
+            TariffId = "tariffId4",
+            TariffType = TariffTypeEnum.DRIVER,
+            PowerRange = new PowerRange
+            {
+                Min = 102,
+                Max = 20,
+            },
+            InternalId = "internalId2",
+            OperatorId = "operatorId8",
+            ProviderId = "providerId2",
+            Currency = "currency8",
+            TariffAltText = new List<TariffAltText>
+            {
+                new TariffAltText
+                {
+                    Language = "language8",
+                    Text = "text6",
+                },
+            },
+            MinPrice = 189.42,
+            MaxPrice = 247.64,
+            Elements = new List<TariffElement>
+            {
+                new TariffElement
+                {
+                    PriceComponents = new List<PriceComponent>
+                    {
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                        new PriceComponent
+                        {
+                            Type = TypeEnum.TIME,
+                            StepSize = 124,
+                            Price = 196.82,
+                            Vat = 137.74,
+                        },
+                    },
+                    Restrictions = new Restrictions
+                    {
+                        StartTime = "startTime0",
+                        EndTime = "endTime2",
+                        StartDate = DateTime.Parse("2016-03-13"),
+                        EndDate = DateTime.Parse("2016-03-13"),
+                        MinKwh = 247.22,
+                    },
+                },
+            },
+            StartDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            EndDateTime = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            LastUpdated = DateTime.ParseExact("2016-03-13T12:52:32.123Z", "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK",
+                provider: CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind),
+            CreatedBy = "createdBy4",
+        },
+    },
+};
 ```
 

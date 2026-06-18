@@ -17,7 +17,9 @@ Methods that can be used to Authorize sessions on this EVSE
 
 ## Example
 
-```
-NewMotionApp
+```csharp
+using ShellEV.Standard.Models;
+
+EvseVOAuthorizationMethodsEnum evseVOAuthorizationMethods = EvseVOAuthorizationMethodsEnum.NewMotionApp;
 ```
 

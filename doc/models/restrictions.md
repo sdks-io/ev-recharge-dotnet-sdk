@@ -23,22 +23,25 @@
 | `MaxDuration` | `int?` | Optional | Maximum session duration in seconds |
 | `DayOfWeek` | [`List<DayOfWeekEnum>`](../../doc/models/day-of-week-enum.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+Restrictions restrictions = new Restrictions
 {
-  "startTime": "08:00",
-  "endTime": "18:00",
-  "startDate": "2021-10-06",
-  "endDate": "2021-10-31",
-  "minKwh": 0.1,
-  "maxKwh": 100,
-  "minCurrent": 0,
-  "maxCurrent": 500,
-  "minPower": 0,
-  "maxPower": 100,
-  "minDuration": 0,
-  "maxDuration": 86400
-}
+    StartTime = "08:00",
+    EndTime = "18:00",
+    StartDate = DateTime.Parse("2021-10-06"),
+    EndDate = DateTime.Parse("2021-10-31"),
+    MinKwh = 0.1,
+    MaxKwh = 100,
+    MinCurrent = 0,
+    MaxCurrent = 500,
+    MinPower = 0,
+    MaxPower = 100,
+    MinDuration = 0,
+    MaxDuration = 86400,
+};
 ```
 

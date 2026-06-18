@@ -14,12 +14,15 @@ Coordinates of the Shell Recharge Site Location
 | `Latitude` | `double?` | Optional | Latitude of the Coordinate<br><br>**Constraints**: `>= -90`, `<= 90` |
 | `Longitude` | `double?` | Optional | Longitude of the Coordinate<br><br>**Constraints**: `>= -180`, `<= 180` |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+Coordinates coordinates = new Coordinates
 {
-  "latitude": 52.143814,
-  "longitude": 52.143814
-}
+    Latitude = 52.143814,
+    Longitude = 52.143814,
+};
 ```
 

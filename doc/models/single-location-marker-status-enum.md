@@ -18,7 +18,9 @@ Minimum of all status values in the Marker, e.g. if at least one Evse in the Mar
 
 ## Example
 
-```
-Available
+```csharp
+using ShellEV.Standard.Models;
+
+SingleLocationMarkerStatusEnum singleLocationMarkerStatus = SingleLocationMarkerStatusEnum.Available;
 ```
 

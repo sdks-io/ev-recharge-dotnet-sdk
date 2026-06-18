@@ -13,47 +13,65 @@
 | `Status` | `string` | Optional | status of the API call |
 | `Data` | [`List<LocationMarker>`](../../doc/models/containers/location-marker.md) | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using ShellEV.Standard.Models.Containers;
+using System.Collections.Generic;
+
+SingleLocationMarkerResponse singleLocationMarkerResponse = new SingleLocationMarkerResponse
 {
-  "requestId": "9d2dee33-7803-485a-a2b1-2c7538e597ee",
-  "status": "SUCCESS",
-  "data": [
+    RequestId = new Guid("9d2dee33-7803-485a-a2b1-2c7538e597ee"),
+    Status = "SUCCESS",
+    Data = new List<LocationMarker>
     {
-      "markerType": "SingleLocation",
-      "uniqueKey": "uniqueKey2",
-      "status": "Available",
-      "coordinates": {
-        "latitude": 39.14,
-        "longitude": 36.94
-      },
-      "evseCount": 26.34,
-      "maxPower": 241.78
+        LocationMarker.FromSingleLocationMarker(
+            new SingleLocationMarker
+            {
+                MarkerType = "SingleLocation",
+                UniqueKey = "uniqueKey2",
+                Status = SingleLocationMarkerStatusEnum.Available,
+                Coordinates = new Coordinates1
+                {
+                    Latitude = 39.14,
+                    Longitude = 36.94,
+                },
+                EvseCount = 26.34,
+                MaxPower = 241.78,
+            }
+        ),
+        LocationMarker.FromSingleLocationMarker(
+            new SingleLocationMarker
+            {
+                MarkerType = "SingleLocation",
+                UniqueKey = "uniqueKey2",
+                Status = SingleLocationMarkerStatusEnum.Available,
+                Coordinates = new Coordinates1
+                {
+                    Latitude = 39.14,
+                    Longitude = 36.94,
+                },
+                EvseCount = 26.34,
+                MaxPower = 241.78,
+            }
+        ),
+        LocationMarker.FromSingleLocationMarker(
+            new SingleLocationMarker
+            {
+                MarkerType = "SingleLocation",
+                UniqueKey = "uniqueKey2",
+                Status = SingleLocationMarkerStatusEnum.Available,
+                Coordinates = new Coordinates1
+                {
+                    Latitude = 39.14,
+                    Longitude = 36.94,
+                },
+                EvseCount = 26.34,
+                MaxPower = 241.78,
+            }
+        ),
     },
-    {
-      "markerType": "SingleLocation",
-      "uniqueKey": "uniqueKey2",
-      "status": "Available",
-      "coordinates": {
-        "latitude": 39.14,
-        "longitude": 36.94
-      },
-      "evseCount": 26.34,
-      "maxPower": 241.78
-    },
-    {
-      "markerType": "SingleLocation",
-      "uniqueKey": "uniqueKey2",
-      "status": "Available",
-      "coordinates": {
-        "latitude": 39.14,
-        "longitude": 36.94
-      },
-      "evseCount": 26.34,
-      "maxPower": 241.78
-    }
-  ]
-}
+};
 ```
 

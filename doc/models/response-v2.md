@@ -13,44 +13,73 @@
 | `Status` | `string` | Optional | status of the API call |
 | `Data` | [`List<LocationResponeObjectV2>`](../../doc/models/location-respone-object-v2.md) | Optional | API Response |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+ResponseV2 responseV2 = new ResponseV2
 {
-  "requestId": "9d2dee33-7803-485a-a2b1-2c7538e597ee",
-  "status": "SUCCESS",
-  "data": [
+    RequestId = new Guid("9d2dee33-7803-485a-a2b1-2c7538e597ee"),
+    Status = "SUCCESS",
+    Data = new List<LocationResponeObjectV2>
     {
-      "uid": "uid0",
-      "externalId": "externalId6",
-      "coordinates": {
-        "latitude": 39.14,
-        "longitude": 36.94
-      },
-      "operatorName": "operatorName0",
-      "address": {
-        "streetAndNumber": "streetAndNumber2",
-        "postalCode": "postalCode8",
-        "city": "city6",
-        "country": "country0"
-      }
+        new LocationResponeObjectV2
+        {
+            Uid = "uid0",
+            ExternalId = "externalId6",
+            Coordinates = new Coordinates
+            {
+                Latitude = 39.14,
+                Longitude = 36.94,
+            },
+            OperatorName = "operatorName0",
+            Address = new Address
+            {
+                StreetAndNumber = "streetAndNumber2",
+                PostalCode = "postalCode8",
+                City = "city6",
+                Country = "country0",
+            },
+        },
+        new LocationResponeObjectV2
+        {
+            Uid = "uid0",
+            ExternalId = "externalId6",
+            Coordinates = new Coordinates
+            {
+                Latitude = 39.14,
+                Longitude = 36.94,
+            },
+            OperatorName = "operatorName0",
+            Address = new Address
+            {
+                StreetAndNumber = "streetAndNumber2",
+                PostalCode = "postalCode8",
+                City = "city6",
+                Country = "country0",
+            },
+        },
+        new LocationResponeObjectV2
+        {
+            Uid = "uid0",
+            ExternalId = "externalId6",
+            Coordinates = new Coordinates
+            {
+                Latitude = 39.14,
+                Longitude = 36.94,
+            },
+            OperatorName = "operatorName0",
+            Address = new Address
+            {
+                StreetAndNumber = "streetAndNumber2",
+                PostalCode = "postalCode8",
+                City = "city6",
+                Country = "country0",
+            },
+        },
     },
-    {
-      "uid": "uid0",
-      "externalId": "externalId6",
-      "coordinates": {
-        "latitude": 39.14,
-        "longitude": 36.94
-      },
-      "operatorName": "operatorName0",
-      "address": {
-        "streetAndNumber": "streetAndNumber2",
-        "postalCode": "postalCode8",
-        "city": "city6",
-        "country": "country0"
-      }
-    }
-  ]
-}
+};
 ```
 

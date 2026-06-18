@@ -17,17 +17,20 @@
 | `UpdatedBy` | [`TariffVOUpdatedByEnum?`](../../doc/models/tariff-vo-updated-by-enum.md) | Optional | Source of the last update of the tariff details |
 | `Structure` | `string` | Optional | Tariff structure that this tariff belongs to, typically Default unless specific tariff is defined for provider |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+Tariff tariff = new Tariff
 {
-  "startFee": 0.0,
-  "perMinute": 0.12,
-  "perKWh": 0.89,
-  "currency": "EUR",
-  "updated": "07/06/2021 10:44:24",
-  "updatedBy": "TariffService",
-  "structure": "default"
-}
+    StartFee = 0,
+    PerMinute = 0.12,
+    PerKWh = 0.89,
+    Currency = "EUR",
+    Updated = "2021-07-06T10:44:24Z",
+    UpdatedBy = TariffVOUpdatedByEnum.TariffService,
+    Structure = "default",
+};
 ```
 

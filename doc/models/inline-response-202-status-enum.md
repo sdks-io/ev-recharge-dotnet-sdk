@@ -16,7 +16,9 @@ Indicates overall status of the request
 
 ## Example
 
-```
-SUCCESS
+```csharp
+using ShellEV.Standard.Models;
+
+InlineResponse202StatusEnum inlineResponse202Status = InlineResponse202StatusEnum.SUCCESS;
 ```
 

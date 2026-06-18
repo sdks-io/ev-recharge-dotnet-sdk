@@ -22,27 +22,32 @@
 | `OperatorId` | `string` | Optional | Unique Id of the operator |
 | `OpenTwentyFourSeven` | `bool?` | Optional | Whether the location is open 24/7 |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+SearchByIdLocationRespone searchByIdLocationRespone = new SearchByIdLocationRespone
 {
-  "uid": "NL*MKS*E0000001*0",
-  "externalId": "01001188",
-  "operatorName": "TheNewMotion",
-  "updated": "10/06/2021 10:44:24",
-  "locationType": "Unknown",
-  "operatorId": "AT-HTB",
-  "openTwentyFourSeven": true,
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  },
-  "address": {
-    "streetAndNumber": "streetAndNumber2",
-    "postalCode": "postalCode8",
-    "city": "city6",
-    "country": "country0"
-  }
-}
+    Uid = "NL*MKS*E0000001*0",
+    ExternalId = "01001188",
+    Coordinates = new Coordinates
+    {
+        Latitude = 39.14,
+        Longitude = 36.94,
+    },
+    OperatorName = "TheNewMotion",
+    Address = new Address
+    {
+        StreetAndNumber = "streetAndNumber2",
+        PostalCode = "postalCode8",
+        City = "city6",
+        Country = "country0",
+    },
+    Updated = "2021-10-06T10:44:24Z",
+    LocationType = "Unknown",
+    OperatorId = "AT-HTB",
+    OpenTwentyFourSeven = true,
+};
 ```
 

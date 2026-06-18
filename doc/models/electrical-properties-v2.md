@@ -16,14 +16,17 @@ Electrical Properties of the Connector
 | `Amperage` | `double?` | Optional | Electric Current in Amperes for this connector |
 | `MaxElectricPower` | `double?` | Optional | Power in Kilowatts for this connector |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+ElectricalPropertiesV2 electricalPropertiesV2 = new ElectricalPropertiesV2
 {
-  "powerType": "AC1Phase",
-  "voltage": 230.0,
-  "amperage": 16.0,
-  "maxElectricPower": 3.7
-}
+    PowerType = ElectricalPropertiesPowerTypeEnum.AC1Phase,
+    Voltage = 230,
+    Amperage = 16,
+    MaxElectricPower = 3.7,
+};
 ```
 

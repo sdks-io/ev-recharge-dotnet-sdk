@@ -13,13 +13,16 @@
 | `StartTime` | `string` | Optional | Hour in 24h local time when the location opens. |
 | `EndTime` | `string` | Optional | Hour in 24h local time when the location closes. |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+OpeningHoursObject openingHoursObject = new OpeningHoursObject
 {
-  "weekDay": "Mon",
-  "startTime": "08:00",
-  "endTime": "23:00"
-}
+    WeekDay = OpeningHoursObjectWeekDayEnum.Mon,
+    StartTime = "08:00",
+    EndTime = "23:00",
+};
 ```
 

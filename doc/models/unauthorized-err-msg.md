@@ -14,17 +14,21 @@
 | `Description` | `string` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `Details` | `List<string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+UnauthorizedErrMsg unauthorizedErrMsg = new UnauthorizedErrMsg
 {
-  "code": "E0003",
-  "message": "Unauthorized",
-  "description": "Invalid Access Token",
-  "details": [
-    "details1",
-    "details2"
-  ]
-}
+    Code = "E0003",
+    Message = "Unauthorized",
+    Description = "Invalid Access Token",
+    Details = new List<string>
+    {
+        "details9",
+    },
+};
 ```
 

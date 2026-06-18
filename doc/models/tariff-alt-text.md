@@ -12,12 +12,15 @@
 | `Language` | `string` | Required | ISO language code |
 | `Text` | `string` | Required | Human readable tariff description |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+TariffAltText tariffAltText = new TariffAltText
 {
-  "language": "en",
-  "text": "€0.30 per kWh"
-}
+    Language = "en",
+    Text = "€0.30 per kWh",
+};
 ```
 

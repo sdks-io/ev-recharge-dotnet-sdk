@@ -19,20 +19,24 @@ A Marker is a place on the map that represent multiple Locations at the same spo
 | `MaxPower` | `double?` | Optional | Maximum power in kW across all locations grouped in this marker (disregarding availability) |
 | `GeoHash` | `string` | Optional | GeoHash of marker coordinates |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+MultiLocationMarker multiLocationMarker = new MultiLocationMarker
 {
-  "markerType": "MultiLocation",
-  "uniqueKey": "2060319_6",
-  "locationCount": 6.0,
-  "evseCount": 10.0,
-  "maxPower": 42.0,
-  "geoHash": "sx",
-  "coordinates": {
-    "latitude": 39.14,
-    "longitude": 36.94
-  }
-}
+    MarkerType = "MultiLocation",
+    UniqueKey = "2060319_6",
+    Coordinates = new Coordinates1
+    {
+        Latitude = 39.14,
+        Longitude = 36.94,
+    },
+    LocationCount = 6,
+    EvseCount = 10,
+    MaxPower = 42,
+    GeoHash = "sx",
+};
 ```
 

@@ -12,12 +12,15 @@
 | `Code` | `string` | Optional | Session code e.g InternalError |
 | `Message` | `string` | Optional | Session message |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+ChargeError chargeError = new ChargeError
 {
-  "code": "code8",
-  "message": "message0"
-}
+    Code = "code4",
+    Message = "message6",
+};
 ```
 

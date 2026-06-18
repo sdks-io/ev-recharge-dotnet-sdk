@@ -19,7 +19,9 @@
 
 ## Example
 
-```
-MONDAY
+```csharp
+using ShellEV.Standard.Models;
+
+DayOfWeekEnum dayOfWeek = DayOfWeekEnum.SUNDAY;
 ```
 

@@ -14,17 +14,23 @@
 | `Description` | `string` | Optional | Technical details of the error message, the example which is given in the sample payload is one of the scenarios. actual response will vary based on the technical nature |
 | `Details` | `List<string>` | Optional | - |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+using System.Collections.Generic;
+
+RatelimitErrMsg ratelimitErrMsg = new RatelimitErrMsg
 {
-  "code": "E0009",
-  "message": "Too Many Requests",
-  "description": "Exceeded maximum allowed number of request limit",
-  "details": [
-    "details9",
-    "details0"
-  ]
-}
+    Code = "E0009",
+    Message = "Too Many Requests",
+    Description = "Exceeded maximum allowed number of request limit",
+    Details = new List<string>
+    {
+        "details3",
+        "details4",
+        "details5",
+    },
+};
 ```
 

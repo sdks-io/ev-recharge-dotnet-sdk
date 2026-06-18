@@ -12,12 +12,15 @@
 | `EvChargeNumber` | `string` | Required | Ev charge number<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `50` |
 | `EvseId` | `string` | Required | This is the Electric Vehicle EquipmentID<br><br>**Constraints**: *Minimum Length*: `18`, *Maximum Length*: `36` |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+ChargesessionStartBody chargesessionStartBody = new ChargesessionStartBody
 {
-  "evChargeNumber": "NL-TNM-C00122045-K",
-  "evseId": "NL*TNM*E02003451*0"
-}
+    EvChargeNumber = "NL-TNM-C00122045-K",
+    EvseId = "NL*TNM*E02003451*0",
+};
 ```
 

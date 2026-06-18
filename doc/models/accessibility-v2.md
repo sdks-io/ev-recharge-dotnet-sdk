@@ -13,11 +13,14 @@ Accessibility of the Location
 |  --- | --- | --- | --- |
 | `Status` | [`AccessibilityStatusEnum?`](../../doc/models/accessibility-status-enum.md) | Optional | Accessibility Status |
 
-## Example (as JSON)
+## Example
 
-```json
+```csharp
+using ShellEV.Standard.Models;
+
+AccessibilityV2 accessibilityV2 = new AccessibilityV2
 {
-  "status": "FreePublic"
-}
+    Status = AccessibilityStatusEnum.FreePublic,
+};
 ```
 

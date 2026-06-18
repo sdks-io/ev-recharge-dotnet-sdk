@@ -15,3 +15,11 @@ Filter by Locations that support the given Authorization Methods
 | `RFIDToken` |
 | `PnC` |
 
+## Example
+
+```csharp
+using ShellEV.Standard.Models;
+
+NearbyLocationsAuthorizationMethodsEnum nearbyLocationsAuthorizationMethods = NearbyLocationsAuthorizationMethodsEnum.NewMotionApp;
+```
+
